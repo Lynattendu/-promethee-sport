@@ -4,19 +4,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Prométhée Jeu Sport</title>
 </head>
 
 <body>
 
-  <h1>🔥 PROMÉTHÉE JEU SPORT</h1>
+  <!-- ÉCRAN D'ACCUEIL -->
+  <div id="accueil">
 
-  <p>Choisis ton mode de jeu</p>
+    <h1>🔥 PROMÉTHÉE JEU SPORT</h1>
 
-  <button>🏋️ JEU SOLO</button>
+    <p>Choisis ton mode de jeu</p>
 
-  <button>👥 JEU À PLUSIEURS</button>
+    <button onclick="ouvrirSolo()">
+      🏋️ JEU SOLO
+    </button>
+
+    <button>
+      👥 JEU À PLUSIEURS
+    </button>
+
+  </div>
+
+
+  <!-- ÉCRAN SOLO -->
+  <div id="solo" style="display:none;">
+
+    <h1>🏋️ ENTRAÎNEMENT SOLO</h1>
+
+    <p>Choisis une famille</p>
+
+    <button>⚡ Corps complet</button>
+
+    <button>🦵 Jambes</button>
+
+    <button>💪 Bras</button>
+
+    <button>🍑 Fessiers</button>
+
+    <button>🛡️ Dos</button>
+
+    <br><br>
+
+    <button onclick="retourAccueil()">
+      ← Retour
+    </button>
+
+  </div>
+
+
+  <script>
+
+    function ouvrirSolo() {
+      document.getElementById("accueil").style.display = "none";
+      document.getElementById("solo").style.display = "block";
+    }
+
+    function retourAccueil() {
+      document.getElementById("solo").style.display = "none";
+      document.getElementById("accueil").style.display = "block";
+    }
+
+  </script>
 
 </body>
 
