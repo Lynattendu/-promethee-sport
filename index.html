@@ -34,17 +34,29 @@
 
     <p>Choisis une famille</p>
 
-    <button>⚡ Corps complet</button>
+    <button onclick="ouvrirFamille('⚡ CORPS COMPLET')">
+  ⚡ Corps complet
+</button>
 
-    <button>🦵 Jambes</button>
+<button onclick="ouvrirFamille('🦵 JAMBES')">
+  🦵 Jambes
+</button>
 
-    <button>💪 Bras</button>
+<button onclick="ouvrirFamille('💪 BRAS')">
+  💪 Bras
+</button>
 
-    <button>🍑 Fessiers</button>
+<button onclick="ouvrirFamille('🍑 FESSIERS')">
+  🍑 Fessiers
+</button>
 
-    <button>🛡️ Dos</button>
-    
-    <button>🌈 Toutes les familles</button>
+<button onclick="ouvrirFamille('🛡️ DOS')">
+  🛡️ Dos
+</button>
+
+<button onclick="ouvrirFamille('🌈 TOUTES LES FAMILLES')">
+  🌈 Toutes les familles
+</button>
 
     <br><br>
 
@@ -53,7 +65,28 @@
     </button>
 
   </div>
+<!-- ÉCRAN CHOIX ENTRAÎNEMENT -->
+<div id="choixEntrainement" style="display:none;">
 
+  <h1 id="titreFamille"></h1>
+
+  <p>Choisis ton entraînement</p>
+
+  <button>
+    🎲 ENTRAÎNEMENT HASARD
+  </button>
+
+  <button>
+    🔄 ENTRAÎNEMENT CIRCUIT
+  </button>
+
+  <br><br>
+
+  <button onclick="retourSolo()">
+    ← Retour
+  </button>
+
+</div>
 
   <script>
 
@@ -67,6 +100,23 @@
       document.getElementById("accueil").style.display = "block";
     }
 
+let familleChoisie = "";
+
+function ouvrirFamille(famille) {
+  familleChoisie = famille;
+
+  document.getElementById("solo").style.display = "none";
+  document.getElementById("choixEntrainement").style.display = "block";
+
+  document.getElementById("titreFamille").textContent = famille;
+}
+
+function retourSolo() {
+  document.getElementById("choixEntrainement").style.display = "none";
+  document.getElementById("solo").style.display = "block";
+}
+
+    
   </script>
 
 </body>
