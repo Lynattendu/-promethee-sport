@@ -204,9 +204,9 @@
 
   <p>Les dieux ont survécu. Et toi aussi. 😄</p>
 
-  <button onclick="refaireCircuit()">
-    🔄 REFAIRE LE CIRCUIT
-  </button>
+<button onclick="nouveauCircuit()">
+  🔄 REFAIRE UN CIRCUIT
+</button>
 
   <br><br>
 
@@ -662,16 +662,6 @@ function exerciceSuivantCircuit() {
 }
 
 
-function refaireCircuit() {
-
-  exerciceCircuitActuel = 0;
-
-  document.getElementById("finCircuit").style.display = "none";
-  document.getElementById("executionCircuit").style.display = "block";
-
-  afficherExerciceCircuit();
-}
-
 
 function terminerEntrainementCircuit() {
 
@@ -679,6 +669,14 @@ function terminerEntrainementCircuit() {
   document.getElementById("choixEntrainement").style.display = "block";
 
 }   
+function nouveauCircuit() {
+
+  document.getElementById("finCircuit").style.display = "none";
+  document.getElementById("circuit").style.display = "block";
+
+}
+
+    
     
   </script>
 
