@@ -190,35 +190,52 @@ function choisirCircuit(nombre) {
   let imageDos = "";
 
   if (familleChoisie === "⚡ CORPS COMPLET") {
-  imageDos = "images/Dos/dos-corps-complet.PNG";
-}
+    imageDos = "images/Dos/dos-corps-complet.PNG";
+  }
 
-if (familleChoisie === "🦵 JAMBES") {
-  imageDos = "images/Dos/dos-jambes.PNG";
-}
+  if (familleChoisie === "🦵 JAMBES") {
+    imageDos = "images/Dos/dos-jambes.PNG";
+  }
 
-if (familleChoisie === "💪 BRAS") {
-  imageDos = "images/Dos/dos-bras.PNG";
-}
+  if (familleChoisie === "💪 BRAS") {
+    imageDos = "images/Dos/dos-bras.PNG";
+  }
+
+  if (familleChoisie === "🍑 FESSIERS") {
+    imageDos = "images/Dos/dos-fessiers.PNG";
+  }
+
   if (familleChoisie === "🔥 ABDOS") {
-  imageDos = "images/Dos/dos-abdos.PNG";
-}
+    imageDos = "images/Dos/dos-abdos.PNG";
+  }
 
-if (familleChoisie === "🍑 FESSIERS") {
-  imageDos = "images/Dos/dos-fessiers.PNG";
-}
+  if (familleChoisie === "🛡️ DOS") {
+    imageDos = "images/Dos/dos-dos.PNG";
+  }
 
-if (familleChoisie === "🛡️ DOS") {
-  imageDos = "images/Dos/dos-dos.PNG";
-}
-
-if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
-  imageDos = "images/Dos/dos-toutes-familles.PNG";
-}
+  if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
+    imageDos = "images/Dos/dos-toutes-familles.PNG";
+  }
 
   let zone = document.getElementById("zoneCartes");
-
   zone.innerHTML = "";
+
+  let cartesFessiers = [
+    "images/Cartes/fessiers-01.PNG",
+    "images/Cartes/fessiers-02.PNG",
+    "images/Cartes/fessiers-03.PNG",
+    "images/Cartes/fessiers-04.PNG",
+    "images/Cartes/fessiers-05.PNG",
+    "images/Cartes/fessiers-06.PNG",
+    "images/Cartes/fessiers-07.PNG",
+    "images/Cartes/fessiers-08.PNG",
+    "images/Cartes/fessiers-09.PNG",
+    "images/Cartes/fessiers-10.PNG",
+    "images/Cartes/fessiers-11.PNG",
+    "images/Cartes/fessiers-12.PNG"
+  ];
+
+  cartesFessiers.sort(() => Math.random() - 0.5);
 
   for (let i = 0; i < nombre; i++) {
 
@@ -230,6 +247,14 @@ if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
     carte.style.width = "140px";
     carte.style.margin = "8px";
     carte.style.borderRadius = "12px";
+    carte.style.cursor = "pointer";
+
+    if (familleChoisie === "🍑 FESSIERS") {
+      carte.onclick = function() {
+        carte.src = cartesFessiers[i];
+        carte.onclick = null;
+      };
+    }
 
     zone.appendChild(carte);
   }
