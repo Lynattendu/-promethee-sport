@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
+<style>
+  .carte-container {
+    width: 140px;
+    height: 210px;
+    display: inline-block;
+    margin: 8px;
+    perspective: 1000px;
+  }
 
+  .carte-flip {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s;
+  }
+
+  .carte-flip.retournee {
+    transform: rotateY(180deg);
+  }
+
+  .carte-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .carte-face-avant {
+    transform: rotateY(180deg);
+  }
+</style>
+
+
+
+  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -239,25 +276,40 @@ function choisirCircuit(nombre) {
 
   for (let i = 0; i < nombre; i++) {
 
-    let carte = document.createElement("img");
+  let container = document.createElement("div");
+  container.className = "carte-container";
 
-    carte.src = imageDos;
-    carte.alt = "Carte face cachée";
+  let flip = document.createElement("div");
+  flip.className = "carte-flip";
 
-    carte.style.width = "140px";
-    carte.style.margin = "8px";
-    carte.style.borderRadius = "12px";
-    carte.style.cursor = "pointer";
+  let dos = document.createElement("img");
+  dos.src = imageDos;
+  dos.className = "carte-face";
+  dos.alt = "Dos de carte";
 
-    if (familleChoisie === "🍑 FESSIERS") {
-      carte.onclick = function() {
-        carte.src = cartesFessiers[i];
-        carte.onclick = null;
-      };
+  let avant = document.createElement("img");
+  avant.className = "carte-face carte-face-avant";
+  avant.alt = "Carte exercice";
+
+  if (familleChoisie === "🍑 FESSIERS") {
+    avant.src = cartesFessiers[i];
+  }
+
+  flip.appendChild(dos);
+  flip.appendChild(avant);
+
+  container.appendChild(flip);
+
+  container.onclick = function() {
+
+    if (!flip.classList.contains("retournee")) {
+      flip.classList.add("retournee");
     }
 
-    zone.appendChild(carte);
-  }
+  };
+
+  zone.appendChild(container);
+}
 }
 
 function retourChoixEntrainement() {
