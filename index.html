@@ -113,9 +113,9 @@
 
   <p>Choisis ton entraînement</p>
 
-  <button>
-    🎲 ENTRAÎNEMENT HASARD
-  </button>
+  <<button onclick="ouvrirHasard()">
+  🎲 ENTRAÎNEMENT HASARD
+</button>
 
   <button onclick="ouvrirCircuit()">
   🔄 ENTRAÎNEMENT CIRCUIT
@@ -231,6 +231,27 @@
   </button>
 
 </div>
+
+<!-- ÉCRAN ENTRAÎNEMENT HASARD -->
+<div id="hasard" style="display:none; text-align:center;">
+
+  <h1>🎲 ENTRAÎNEMENT HASARD</h1>
+
+  <p id="titreHasard"></p>
+
+  <div id="zoneCartesHasard"></div>
+
+  <br>
+
+  <button onclick="retourChoixDepuisHasard()">
+    ← Retour
+  </button>
+
+</div>
+
+
+
+
   
   
   <script>
@@ -765,6 +786,72 @@ function retourAccueilDepuisFin() {
   document.getElementById("accueil").style.display = "block";
 
 }
+
+function ouvrirHasard() {
+
+  document.getElementById("choixEntrainement").style.display = "none";
+  document.getElementById("hasard").style.display = "block";
+
+  document.getElementById("titreHasard").textContent = familleChoisie;
+
+  let imageDosHasard = "";
+
+  if (familleChoisie === "⚡ CORPS COMPLET") {
+    imageDosHasard = "images/Dos/dos-corps-complet.PNG";
+  }
+
+  if (familleChoisie === "🦵 JAMBES") {
+    imageDosHasard = "images/Dos/dos-jambes.PNG";
+  }
+
+  if (familleChoisie === "💪 BRAS") {
+    imageDosHasard = "images/Dos/dos-bras.PNG";
+  }
+
+  if (familleChoisie === "🍑 FESSIERS") {
+    imageDosHasard = "images/Dos/dos-fessiers.PNG";
+  }
+
+  if (familleChoisie === "🔥 ABDOS") {
+    imageDosHasard = "images/Dos/dos-abdos.PNG";
+  }
+
+  if (familleChoisie === "🛡️ DOS") {
+    imageDosHasard = "images/Dos/dos-dos.PNG";
+  }
+
+  if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
+    imageDosHasard = "images/Dos/dos-toutes-familles.PNG";
+  }
+
+  let zone = document.getElementById("zoneCartesHasard");
+
+  zone.innerHTML = "";
+
+  for (let i = 0; i < 6; i++) {
+
+    let carte = document.createElement("img");
+
+    carte.src = imageDosHasard;
+    carte.alt = "Carte face cachée";
+
+    carte.style.width = "140px";
+    carte.style.margin = "8px";
+    carte.style.borderRadius = "12px";
+
+    zone.appendChild(carte);
+  }
+
+}
+
+function retourChoixDepuisHasard() {
+
+  document.getElementById("hasard").style.display = "none";
+  document.getElementById("choixEntrainement").style.display = "block";
+
+}
+
+    
     
   </script>
 
