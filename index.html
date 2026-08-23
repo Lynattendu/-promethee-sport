@@ -113,6 +113,28 @@
 
 </div>
 
+<!-- ÉCRAN CARTES DU CIRCUIT -->
+<div id="cartesCircuit" style="display:none;">
+
+  <h1>🔥 TON CIRCUIT</h1>
+
+  <p id="infoCircuit"></p>
+
+  <div id="zoneCartes"></div>
+
+  <br>
+
+  <button onclick="retourCircuit()">
+    ← Retour
+  </button>
+
+</div>
+
+
+
+  
+
+  
   
   <script>
 
@@ -152,9 +174,58 @@ function ouvrirCircuit() {
 }
 
 function choisirCircuit(nombre) {
+
   nombreExercicesCircuit = nombre;
 
-  alert("Circuit de " + nombre + " exercices choisi !");
+  document.getElementById("circuit").style.display = "none";
+  document.getElementById("cartesCircuit").style.display = "block";
+
+  document.getElementById("infoCircuit").textContent =
+    familleChoisie + " • " + nombre + " exercices";
+
+  let imageDos = "";
+
+  if (familleChoisie === "⚡ CORPS COMPLET") {
+    imageDos = "images/dos/dos-corps-complet.png";
+  }
+
+  if (familleChoisie === "🦵 JAMBES") {
+    imageDos = "images/dos/dos-jambes.png";
+  }
+
+  if (familleChoisie === "💪 BRAS") {
+    imageDos = "images/dos/dos-bras.png";
+  }
+
+  if (familleChoisie === "🍑 FESSIERS") {
+    imageDos = "images/dos/dos-fessiers.png";
+  }
+
+  if (familleChoisie === "🛡️ DOS") {
+    imageDos = "images/dos/dos-dos.png";
+  }
+
+  if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
+    imageDos = "images/dos/dos-toutes-familles.png";
+  }
+
+  let zone = document.getElementById("zoneCartes");
+
+  zone.innerHTML = "";
+
+  for (let i = 0; i < nombre; i++) {
+
+    let carte = document.createElement("img");
+
+    carte.src = imageDos;
+    carte.alt = "Carte face cachée";
+
+    carte.style.width = "140px";
+    carte.style.margin = "8px";
+    carte.style.borderRadius = "12px";
+
+    zone.appendChild(carte);
+  }
 }
 
 function retourChoixEntrainement() {
@@ -162,7 +233,10 @@ function retourChoixEntrainement() {
   document.getElementById("choixEntrainement").style.display = "block";
 }
 
-
+function retourCircuit() {
+  document.getElementById("cartesCircuit").style.display = "none";
+  document.getElementById("circuit").style.display = "block";
+}
 
     
     
