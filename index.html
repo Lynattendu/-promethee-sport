@@ -201,6 +201,10 @@
 
   <h1>🔥 CIRCUIT TERMINÉ</h1>
 
+<p id="bilanCircuit"></p>
+
+<p>Les dieux ont survécu. Et toi aussi. 😄</p>
+
   <p>Les dieux ont survécu. Et toi aussi. 😄</p>
 
 <button onclick="nouveauCircuit()">
@@ -249,6 +253,7 @@ function retourSolo() {
 
 let cartesCircuitSelectionnees = [];
 let exerciceCircuitActuel = 0;
+    let debutCircuit = 0;
 
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
@@ -605,6 +610,8 @@ function retourCircuit() {
 
   exerciceCircuitActuel = 0;
 
+  debutCircuit = Date.now();
+
   document.getElementById("cartesCircuit").style.display = "none";
   document.getElementById("executionCircuit").style.display = "block";
 
@@ -654,10 +661,29 @@ function exerciceSuivantCircuit() {
 
   } else {
 
-    document.getElementById("executionCircuit").style.display = "none";
-    document.getElementById("finCircuit").style.display = "block";
+  let finCircuitTemps = Date.now();
+  let dureeTotale = Math.floor((finCircuitTemps - debutCircuit) / 1000);
 
+  let minutes = Math.floor(dureeTotale / 60);
+  let secondes = dureeTotale % 60;
+
+  let texteTemps = "";
+
+  if (minutes > 0) {
+    texteTemps = minutes + " min " + secondes + " s";
+  } else {
+    texteTemps = secondes + " s";
   }
+
+  document.getElementById("bilanCircuit").textContent =
+    cartesCircuitSelectionnees.length +
+    " exercices réalisés • ⏱️ " +
+    texteTemps;
+
+  document.getElementById("executionCircuit").style.display = "none";
+  document.getElementById("finCircuit").style.display = "block";
+
+}
 }
 
 
