@@ -205,7 +205,6 @@
 
 <p>Les dieux ont survécu. Et toi aussi. 😄</p>
 
-  <p>Les dieux ont survécu. Et toi aussi. 😄</p>
 
 <button onclick="nouveauCircuit()">
   🔄 REFAIRE UN CIRCUIT
@@ -218,7 +217,20 @@
   </button>
 
 </div>
+<!-- ÉCRAN FIN DE L'ENTRAÎNEMENT -->
+<div id="finEntrainement" style="display:none; text-align:center;">
 
+  <h1>🔥 ENTRAÎNEMENT TERMINÉ</h1>
+
+  <p id="bilanEntrainement"></p>
+
+  <p>Prométhée valide l’épreuve. 😄</p>
+
+  <button onclick="retourAccueilDepuisFin()">
+    🏠 RETOUR À L'ACCUEIL
+  </button>
+
+</div>
   
   
   <script>
@@ -253,7 +265,12 @@ function retourSolo() {
 
 let cartesCircuitSelectionnees = [];
 let exerciceCircuitActuel = 0;
-    let debutCircuit = 0;
+let debutCircuit = 0;
+    
+let totalCircuits = 0;
+let totalExercices = 0;
+let totalTempsSecondes = 0; 
+    
 
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
@@ -663,7 +680,12 @@ function exerciceSuivantCircuit() {
 
   let finCircuitTemps = Date.now();
   let dureeTotale = Math.floor((finCircuitTemps - debutCircuit) / 1000);
+totalCircuits++;
 
+totalExercices += cartesCircuitSelectionnees.length;
+
+totalTempsSecondes += dureeTotale;
+    
   let minutes = Math.floor(dureeTotale / 60);
   let secondes = dureeTotale % 60;
 
@@ -690,18 +712,51 @@ function exerciceSuivantCircuit() {
 
 function terminerEntrainementCircuit() {
 
-  document.getElementById("finCircuit").style.display = "none";
-  document.getElementById("choixEntrainement").style.display = "block";
+  let minutesTotal = Math.floor(totalTempsSecondes / 60);
+  let secondesTotal = totalTempsSecondes % 60;
 
-}   
-function nouveauCircuit() {
+  let texteTempsTotal = "";
+
+  if (minutesTotal > 0) {
+    texteTempsTotal = minutesTotal + " min " + secondesTotal + " s";
+  } else {
+    texteTempsTotal = secondesTotal + " s";
+  }
+
+  document.getElementById("bilanEntrainement").textContent =
+    totalCircuits +
+    " circuit(s) réalisé(s) • " +
+    totalExercices +
+    " exercices réalisés • ⏱️ " +
+    texteTempsTotal;
+
+  document.getElementById("finCircuit").style.display = "none";
+  document.getElementById("finEntrainement").style.display = "block";
+
+}function nouveauCircuit() {
 
   document.getElementById("finCircuit").style.display = "none";
   document.getElementById("circuit").style.display = "block";
 
 }
+function retourAccueilDepuisFin() {
 
-    
+  // Remettre les compteurs de séance à zéro
+  totalCircuits = 0;
+  totalExercices = 0;
+  totalTempsSecondes = 0;
+
+  cartesCircuitSelectionnees = [];
+  exerciceCircuitActuel = 0;
+  debutCircuit = 0;
+
+  // Fermer l'écran de fin
+  document.getElementById("finEntrainement").style.display = "none";
+
+  // Revenir à l'accueil
+  document.getElementById("accueil").style.display = "block";
+
+}
     
   </script>
 
