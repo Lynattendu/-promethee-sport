@@ -541,13 +541,21 @@ zone.appendChild(texteSpeciale);
 
 // Choisir une carte spéciale au hasard entre 01 et 30
 
-let numeroSpeciale = Math.floor(Math.random() * 30) + 1;
+const cartesSpecialesSolo = [
+  "02", "03", "04", "07",
+  "09", "10", "12", "14",
+  "16", "19", "20", "22",
+  "24", "26"
+];
 
-let numeroFormate = String(numeroSpeciale).padStart(2, "0");
+let numeroSpeciale =
+  cartesSpecialesSolo[
+    Math.floor(Math.random() * cartesSpecialesSolo.length)
+  ];
 
 let imageSpeciale =
   "images/Cartes/Speciales/speciales-" +
-  numeroFormate +
+  numeroSpeciale +
   ".PNG";
 
 
