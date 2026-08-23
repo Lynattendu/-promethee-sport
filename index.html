@@ -257,7 +257,9 @@ function choisirCircuit(nombre) {
   let zone = document.getElementById("zoneCartes");
   zone.innerHTML = "";
 
-  let cartesFessiers = [
+  const cartesParFamille = {
+
+  "🍑 FESSIERS": [
     "images/Cartes/fessiers-01.PNG",
     "images/Cartes/fessiers-02.PNG",
     "images/Cartes/fessiers-03.PNG",
@@ -270,9 +272,34 @@ function choisirCircuit(nombre) {
     "images/Cartes/fessiers-10.PNG",
     "images/Cartes/fessiers-11.PNG",
     "images/Cartes/fessiers-12.PNG"
-  ];
+  ],
 
-  cartesFessiers.sort(() => Math.random() - 0.5);
+  "🦵 JAMBES": [],
+
+  "💪 BRAS": [],
+
+  "🔥 ABDOS": [],
+
+  "🛡️ DOS": [],
+
+  "⚡ CORPS COMPLET": []
+
+};
+
+  let cartesDisponibles = [];
+
+if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
+
+  cartesDisponibles = Object.values(cartesParFamille).flat();
+
+} else {
+
+  cartesDisponibles = [...cartesParFamille[familleChoisie]];
+
+}
+
+cartesDisponibles.sort(() => Math.random() - 0.5);
+  
 
   for (let i = 0; i < nombre; i++) {
 
@@ -291,22 +318,18 @@ function choisirCircuit(nombre) {
   avant.className = "carte-face carte-face-avant";
   avant.alt = "Carte exercice";
 
-  if (familleChoisie === "🍑 FESSIERS") {
-    avant.src = cartesFessiers[i];
-  }
+  avant.src = cartesDisponibles[i];
 
   flip.appendChild(dos);
   flip.appendChild(avant);
 
-  container.appendChild(flip);
-
   container.onclick = function() {
 
-    if (!flip.classList.contains("retournee")) {
-      flip.classList.add("retournee");
-    }
+  if (!flip.classList.contains("retournee")) {
+    flip.classList.add("retournee");
+  }
 
-  };
+};
 
   zone.appendChild(container);
 }
