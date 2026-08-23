@@ -171,9 +171,50 @@
 
 </div>
 
+<!-- ÉCRAN EXÉCUTION DU CIRCUIT -->
+<div id="executionCircuit" style="display:none; text-align:center;">
 
+  <h1>🔥 CIRCUIT EN COURS</h1>
 
-  
+  <p id="numeroExerciceCircuit"></p>
+
+  <img
+    id="grandeCarteCircuit"
+    alt="Exercice du circuit"
+    style="
+      max-width:90%;
+      max-height:70vh;
+      border-radius:16px;
+      object-fit:contain;
+    "
+  >
+
+  <br><br>
+
+  <button id="boutonExerciceSuivant" onclick="exerciceSuivantCircuit()">
+    EXERCICE SUIVANT →
+  </button>
+
+</div>
+
+  <!-- ÉCRAN FIN DU CIRCUIT -->
+<div id="finCircuit" style="display:none; text-align:center;">
+
+  <h1>🔥 CIRCUIT TERMINÉ</h1>
+
+  <p>Les dieux ont survécu. Et toi aussi. 😄</p>
+
+  <button onclick="refaireCircuit()">
+    🔄 REFAIRE LE CIRCUIT
+  </button>
+
+  <br><br>
+
+  <button onclick="terminerEntrainementCircuit()">
+    ✅ TERMINER L'ENTRAÎNEMENT
+  </button>
+
+</div>
 
   
   
@@ -424,7 +465,7 @@ if (familleChoisie === "🌈 TOUTES LES FAMILLES") {
 }
 
 cartesDisponibles.sort(() => Math.random() - 0.5);
-  
+ cartesCircuitSelectionnees = cartesDisponibles.slice(0, nombre); 
 
   for (let i = 0; i < nombre; i++) {
 
@@ -443,7 +484,7 @@ cartesDisponibles.sort(() => Math.random() - 0.5);
   avant.className = "carte-face carte-face-avant";
   avant.alt = "Carte exercice";
 
-  avant.src = cartesDisponibles[i];
+  avant.src = cartesCircuitSelectionnees[i];
 
   // On place le dos et la face dans la carte
   flip.appendChild(dos);
@@ -536,6 +577,19 @@ containerSpeciale.onclick = function() {
 // Afficher la carte
 
 zone.appendChild(containerSpeciale);
+let boutonCommencer = document.createElement("button");
+
+boutonCommencer.textContent = "🔥 COMMENCER LE CIRCUIT";
+
+boutonCommencer.style.display = "block";
+boutonCommencer.style.margin = "30px auto";
+boutonCommencer.style.padding = "15px 25px";
+boutonCommencer.style.fontSize = "18px";
+
+boutonCommencer.onclick = commencerCircuit;
+
+zone.appendChild(boutonCommencer);
+  
 }
 
 function retourChoixEntrainement() {
@@ -548,7 +602,83 @@ function retourCircuit() {
   document.getElementById("circuit").style.display = "block";
 }
 
-    
+ function commencerCircuit() {
+
+  exerciceCircuitActuel = 0;
+
+  document.getElementById("cartesCircuit").style.display = "none";
+  document.getElementById("executionCircuit").style.display = "block";
+
+  afficherExerciceCircuit();
+}
+
+
+function afficherExerciceCircuit() {
+
+  let carte = cartesCircuitSelectionnees[exerciceCircuitActuel];
+
+  document.getElementById("grandeCarteCircuit").src = carte;
+
+  document.getElementById("numeroExerciceCircuit").textContent =
+    "Exercice " +
+    (exerciceCircuitActuel + 1) +
+    " / " +
+    cartesCircuitSelectionnees.length;
+
+  let bouton = document.getElementById("boutonExerciceSuivant");
+
+  if (
+    exerciceCircuitActuel ===
+    cartesCircuitSelectionnees.length - 1
+  ) {
+
+    bouton.textContent = "🔥 TERMINER LE CIRCUIT";
+
+  } else {
+
+    bouton.textContent = "EXERCICE SUIVANT →";
+
+  }
+}
+
+
+function exerciceSuivantCircuit() {
+
+  if (
+    exerciceCircuitActuel <
+    cartesCircuitSelectionnees.length - 1
+  ) {
+
+    exerciceCircuitActuel++;
+
+    afficherExerciceCircuit();
+
+  } else {
+
+    document.getElementById("executionCircuit").style.display = "none";
+    document.getElementById("finCircuit").style.display = "block";
+
+  }
+}
+
+
+function refaireCircuit() {
+
+  exerciceCircuitActuel = 0;
+
+  document.getElementById("finCircuit").style.display = "none";
+  document.getElementById("executionCircuit").style.display = "block";
+
+  afficherExerciceCircuit();
+}
+
+
+function terminerEntrainementCircuit() {
+
+  document.getElementById("finCircuit").style.display = "none";
+  document.getElementById("choixEntrainement").style.display = "block";
+
+}   
     
   </script>
 
