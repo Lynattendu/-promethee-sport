@@ -243,7 +243,13 @@
 
   <p id="titreHasard"></p>
 
-  <div id="zoneCartesHasard"></div>
+<button
+  id="boutonExerciceTermineHasard"
+  onclick="exerciceTermineHasard()"
+  style="display:none;"
+>
+  ✅ EXERCICE TERMINÉ
+</button>
 
   <br>
 
@@ -295,7 +301,7 @@ let debutCircuit = 0;
 let totalCircuits = 0;
 let totalExercices = 0;
 let totalTempsSecondes = 0; 
-    
+let carteHasardActive = false;   
 
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
@@ -1026,11 +1032,19 @@ for (let i = 0; i < 6; i++) {
 
   container.onclick = function() {
 
-    if (!flip.classList.contains("retournee")) {
-      flip.classList.add("retournee");
-    }
+  if (carteHasardActive) {
+    return;
+  }
 
-  };
+  if (!flip.classList.contains("retournee")) {
+
+    carteHasardActive = true;
+
+    flip.classList.add("retournee");
+document.getElementById("boutonExerciceTermineHasard").style.display = "inline-block";
+  }
+
+};
 
   zone.appendChild(container);
 }
@@ -1044,7 +1058,14 @@ function retourChoixDepuisHasard() {
 
 }
 
-    
+  function exerciceTermineHasard() {
+
+  carteHasardActive = false;
+
+  document.getElementById("boutonExerciceTermineHasard").style.display = "none";
+
+  ouvrirHasard();
+}  
     
   </script>
 
