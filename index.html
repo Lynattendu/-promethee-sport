@@ -320,19 +320,26 @@ cartesDisponibles.sort(() => Math.random() - 0.5);
 
   avant.src = cartesDisponibles[i];
 
+  // On place le dos et la face dans la carte
   flip.appendChild(dos);
   flip.appendChild(avant);
 
+  // On place la carte dans son emplacement
+  container.appendChild(flip);
+
+  // Quand on touche la carte, elle se retourne
   container.onclick = function() {
 
-  if (!flip.classList.contains("retournee")) {
-    flip.classList.add("retournee");
-  }
+    if (!flip.classList.contains("retournee")) {
+      flip.classList.add("retournee");
+    }
 
-};
+  };
 
+  // On affiche la carte
   zone.appendChild(container);
 }
+
 }
 
 function retourChoixEntrainement() {
