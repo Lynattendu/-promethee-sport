@@ -76,9 +76,9 @@
     🎲 ENTRAÎNEMENT HASARD
   </button>
 
-  <button>
-    🔄 ENTRAÎNEMENT CIRCUIT
-  </button>
+  <button onclick="ouvrirCircuit()">
+  🔄 ENTRAÎNEMENT CIRCUIT
+</button>
 
   <br><br>
 
@@ -88,6 +88,32 @@
 
 </div>
 
+<!-- ÉCRAN CIRCUIT -->
+<div id="circuit" style="display:none;">
+
+  <h1>🔥 CIRCUIT</h1>
+
+  <p id="titreCircuit"></p>
+
+  <p>Combien d'exercices veux-tu ?</p>
+
+  <button onclick="choisirCircuit(3)">
+    3 EXERCICES
+  </button>
+
+  <button onclick="choisirCircuit(5)">
+    5 EXERCICES
+  </button>
+
+  <br><br>
+
+  <button onclick="retourChoixEntrainement()">
+    ← Retour
+  </button>
+
+</div>
+
+  
   <script>
 
     function ouvrirSolo() {
@@ -116,6 +142,29 @@ function retourSolo() {
   document.getElementById("solo").style.display = "block";
 }
 
+    let nombreExercicesCircuit = 0;
+
+function ouvrirCircuit() {
+  document.getElementById("choixEntrainement").style.display = "none";
+  document.getElementById("circuit").style.display = "block";
+
+  document.getElementById("titreCircuit").textContent = familleChoisie;
+}
+
+function choisirCircuit(nombre) {
+  nombreExercicesCircuit = nombre;
+
+  alert("Circuit de " + nombre + " exercices choisi !");
+}
+
+function retourChoixEntrainement() {
+  document.getElementById("circuit").style.display = "none";
+  document.getElementById("choixEntrainement").style.display = "block";
+}
+
+
+
+    
     
   </script>
 
