@@ -821,7 +821,8 @@ function retourAccueilDepuisFin() {
 }
 
 function ouvrirHasard() {
-
+carteHasardActive = false;
+  document.getElementById("boutonExerciceTermineHasard").style.display = "none";
   document.getElementById("choixEntrainement").style.display = "none";
   document.getElementById("hasard").style.display = "block";
 
