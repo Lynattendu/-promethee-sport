@@ -257,13 +257,31 @@
 
   <br><br>
 
+<button onclick="terminerEntrainementHasard()">
+  🏁 TERMINER L'ENTRAÎNEMENT
+</button>
+  <br><br>
+
   <button onclick="retourChoixDepuisHasard()">
     ← Retour
   </button>
 
 </div>
 
+<!-- ÉCRAN FIN ENTRAÎNEMENT HASARD -->
+<div id="finHasard" style="display:none; text-align:center;">
 
+  <h1>🔥 ENTRAÎNEMENT TERMINÉ</h1>
+
+  <p id="bilanHasard"></p>
+
+  <p>Prométhée valide l’épreuve. 😄</p>
+
+  <button onclick="retourAccueilDepuisHasard()">
+    🏠 RETOUR À L'ACCUEIL
+  </button>
+
+</div>
 
   
   
@@ -305,6 +323,8 @@ let totalCircuits = 0;
 let totalExercices = 0;
 let totalTempsSecondes = 0; 
 let carteHasardActive = false;   
+    let totalExercicesHasard = 0;
+let debutEntrainementHasard = 0;
 
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
@@ -1039,6 +1059,9 @@ for (let i = 0; i < 6; i++) {
     if (!flip.classList.contains("retournee")) {
 
       carteHasardActive = true;
+      if (debutEntrainementHasard === 0) {
+  debutEntrainementHasard = Date.now();
+}
       flip.classList.add("retournee");
 
       document.getElementById(
@@ -1120,12 +1143,60 @@ function retourChoixDepuisHasard() {
 
   function exerciceTermineHasard() {
 
+  totalExercicesHasard++;
+
   carteHasardActive = false;
 
   document.getElementById("boutonExerciceTermineHasard").style.display = "none";
 
   ouvrirHasard();
 }  
+function terminerEntrainementHasard() {
+
+  let finHasard = Date.now();
+
+  let dureeTotaleHasard = 0;
+
+  if (debutEntrainementHasard > 0) {
+    dureeTotaleHasard = Math.floor(
+      (finHasard - debutEntrainementHasard) / 1000
+    );
+  }
+
+  let minutes = Math.floor(dureeTotaleHasard / 60);
+  let secondes = dureeTotaleHasard % 60;
+
+  let texteTemps = "";
+
+  if (minutes > 0) {
+    texteTemps = minutes + " min " + secondes + " s";
+  } else {
+    texteTemps = secondes + " s";
+  }
+
+  document.getElementById("bilanHasard").textContent =
+    totalExercicesHasard +
+    " exercices réalisés • ⏱️ " +
+    texteTemps;
+
+  document.getElementById("hasard").style.display = "none";
+  document.getElementById("finHasard").style.display = "block";
+}
+
+
+function retourAccueilDepuisHasard() {
+
+  totalExercicesHasard = 0;
+  debutEntrainementHasard = 0;
+  carteHasardActive = false;
+
+  document.getElementById("finHasard").style.display = "none";
+  document.getElementById("accueil").style.display = "block";
+
+}
+
+
+
     
   </script>
 
