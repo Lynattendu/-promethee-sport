@@ -1020,12 +1020,9 @@ for (let i = 0; i < 6; i++) {
   let dos = document.createElement("img");
   dos.src = imageDosHasard;
   dos.className = "carte-face";
-  dos.alt = "Dos de carte";
 
   let avant = document.createElement("img");
   avant.className = "carte-face carte-face-avant";
-  avant.alt = "Carte exercice";
-
   avant.src = cartesDisponiblesHasard[i];
 
   flip.appendChild(dos);
@@ -1035,35 +1032,36 @@ for (let i = 0; i < 6; i++) {
 
   container.onclick = function() {
 
-  if (carteHasardActive) {
-    return;
-  }
+    if (carteHasardActive) {
+      return;
+    }
 
-  if (!flip.classList.contains("retournee")) {
+    if (!flip.classList.contains("retournee")) {
 
-    carteHasardActive = true;
+      carteHasardActive = true;
+      flip.classList.add("retournee");
 
-    flip.classList.add("retournee");
-document.getElementById("boutonExerciceTermineHasard").style.display = "inline-block";
-  }
+      document.getElementById(
+        "boutonExerciceTermineHasard"
+      ).style.display = "inline-block";
 
-};
+    }
+  };
 
   zone.appendChild(container);
-  // ----- CARTE SPÉCIALE FACULTATIVE EN HASARD -----
+}
+
+
+// ICI seulement commence la carte spéciale
 
 let titreSpecialeHasard = document.createElement("h2");
 titreSpecialeHasard.textContent = "🔥 Tu veux défier les dieux ?";
-titreSpecialeHasard.style.marginTop = "30px";
 
 let texteSpecialeHasard = document.createElement("p");
 texteSpecialeHasard.textContent = "La carte spéciale est facultative.";
 
 zone.appendChild(titreSpecialeHasard);
 zone.appendChild(texteSpecialeHasard);
-
-
-// Cartes spéciales autorisées en SOLO
 
 const cartesSpecialesSoloHasard = [
   "02", "03", "04", "07",
@@ -1082,9 +1080,6 @@ let imageSpecialeHasard =
   numeroSpecialeHasard +
   ".PNG";
 
-
-// Créer la carte spéciale
-
 let containerSpecialeHasard = document.createElement("div");
 containerSpecialeHasard.className = "carte-container";
 
@@ -1094,20 +1089,15 @@ flipSpecialeHasard.className = "carte-flip";
 let dosSpecialeHasard = document.createElement("img");
 dosSpecialeHasard.src = "images/Dos/dos-speciales.PNG";
 dosSpecialeHasard.className = "carte-face";
-dosSpecialeHasard.alt = "Dos de carte spéciale";
 
 let avantSpecialeHasard = document.createElement("img");
 avantSpecialeHasard.src = imageSpecialeHasard;
 avantSpecialeHasard.className = "carte-face carte-face-avant";
-avantSpecialeHasard.alt = "Carte spéciale";
 
 flipSpecialeHasard.appendChild(dosSpecialeHasard);
 flipSpecialeHasard.appendChild(avantSpecialeHasard);
 
 containerSpecialeHasard.appendChild(flipSpecialeHasard);
-
-
-// La carte spéciale peut être retournée ou ignorée
 
 containerSpecialeHasard.onclick = function() {
 
@@ -1118,7 +1108,6 @@ containerSpecialeHasard.onclick = function() {
 };
 
 zone.appendChild(containerSpecialeHasard);
-}
 
 }
 
