@@ -117,6 +117,169 @@ body {
   opacity: 0.85;
 }
 
+#solo {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 30px 18px 40px;
+  text-align: center;
+}
+
+#solo h1 {
+  margin: 10px 0 10px;
+  font-size: clamp(28px, 7vw, 46px);
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(0, 200, 255, 0.35),
+    0 0 18px rgba(255, 140, 0, 0.25);
+}
+
+#solo p {
+  margin-bottom: 26px;
+  color: #d9e3f0;
+  font-size: 17px;
+}
+
+.bouton-famille {
+  display: block;
+  width: min(92%, 430px);
+  margin: 14px auto;
+  padding: 18px 20px;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(19, 31, 57, 0.95),
+      rgba(43, 21, 84, 0.92)
+    );
+
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.32),
+    0 0 14px rgba(0, 180, 255, 0.10);
+
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.bouton-famille:active {
+  transform: scale(0.97);
+}
+
+.bouton-famille:hover {
+  border-color: rgba(255, 166, 0, 0.45);
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.36),
+    0 0 18px rgba(255, 140, 0, 0.18);
+}
+
+.bouton-retour {
+  margin-top: 24px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.10);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.ecran-jeu {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 30px 18px 40px;
+  text-align: center;
+}
+
+.ecran-jeu h1 {
+  margin: 10px 0 12px;
+  font-size: clamp(28px, 7vw, 46px);
+  color: white;
+  text-shadow:
+    0 0 8px rgba(0, 200, 255, 0.28),
+    0 0 18px rgba(255, 140, 0, 0.22);
+}
+
+.ecran-jeu p {
+  color: #d9e3f0;
+  font-size: 17px;
+}
+
+.bouton-mode {
+  display: block;
+  width: min(92%, 430px);
+  min-height: 82px;
+  margin: 16px auto;
+  padding: 18px 20px;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 41, 76, 0.96),
+      rgba(75, 35, 125, 0.92)
+    );
+
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+
+  box-shadow:
+    0 9px 26px rgba(0,0,0,0.32),
+    0 0 15px rgba(0,180,255,0.10);
+
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.bouton-mode:active {
+  transform: scale(0.97);
+}
+
+.bouton-principal {
+  display: block;
+  width: min(92%, 430px);
+  margin: 22px auto;
+  padding: 17px 22px;
+
+  border: none;
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 140, 20, 0.96),
+      rgba(196, 67, 255, 0.90)
+    );
+
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+
+  box-shadow:
+    0 9px 28px rgba(0,0,0,0.35),
+    0 0 18px rgba(255,140,30,0.18);
+
+  cursor: pointer;
+}
+
+.bouton-principal:active {
+  transform: scale(0.97);
+}
+
+
 
   
 </style>
@@ -156,67 +319,68 @@ body {
     <h1>🏋️ ENTRAÎNEMENT SOLO</h1>
 
     <p>Choisis une famille</p>
-
-    <button onclick="ouvrirFamille('⚡ CORPS COMPLET')">
+<button class="bouton-famille" onclick="ouvrirFamille('⚡ CORPS COMPLET')">
   ⚡ Corps complet
 </button>
 
-<button onclick="ouvrirFamille('🦵 JAMBES')">
+<button class="bouton-famille" onclick="ouvrirFamille('🦵 JAMBES')">
   🦵 Jambes
 </button>
 
-<button onclick="ouvrirFamille('💪 BRAS')">
+<button class="bouton-famille" onclick="ouvrirFamille('💪 BRAS')">
   💪 Bras
 </button>
-    
-<button onclick="ouvrirFamille('🔥 ABDOS')">
-  🔥 Abdos
-</button>
-    
-<button onclick="ouvrirFamille('🍑 FESSIERS')">
+
+<button class="bouton-famille" onclick="ouvrirFamille('🍑 FESSIERS')">
   🍑 Fessiers
 </button>
 
-<button onclick="ouvrirFamille('🛡️ DOS')">
+<button class="bouton-famille" onclick="ouvrirFamille('🔥 ABDOS')">
+  🔥 Abdos
+</button>
+
+<button class="bouton-famille" onclick="ouvrirFamille('🛡️ DOS')">
   🛡️ Dos
 </button>
 
-<button onclick="ouvrirFamille('🌈 TOUTES LES FAMILLES')">
+<button class="bouton-famille" onclick="ouvrirFamille('🌈 TOUTES LES FAMILLES')">
   🌈 Toutes les familles
 </button>
 
     <br><br>
 
-    <button onclick="retourAccueil()">
-      ← Retour
-    </button>
+  <button class="bouton-retour" onclick="retourAccueil()">
+  ← Retour
+</button>
 
   </div>
 <!-- ÉCRAN CHOIX ENTRAÎNEMENT -->
-<div id="choixEntrainement" style="display:none;">
+<div id="choixEntrainement" class="ecran-jeu" style="display:none;">
 
   <h1 id="titreFamille"></h1>
 
   <p>Choisis ton entraînement</p>
 
-  <<button onclick="ouvrirHasard()">
+  <button class="bouton-mode" onclick="ouvrirHasard()">
   🎲 ENTRAÎNEMENT HASARD
 </button>
 
-  <button onclick="ouvrirCircuit()">
+  <button class="bouton-mode" onclick="ouvrirCircuit()">
+
   🔄 ENTRAÎNEMENT CIRCUIT
+
 </button>
 
   <br><br>
 
-  <button onclick="retourSolo()">
-    ← Retour
-  </button>
+ <button class="bouton-retour" onclick="retourSolo()">
+  ← Retour
+</button>
 
 </div>
 
 <!-- ÉCRAN CIRCUIT -->
-<div id="circuit" style="display:none;">
+<div id="circuit" class="ecran-jeu" style="display:none;">
 
   <h1>🔥 CIRCUIT</h1>
 
@@ -224,19 +388,19 @@ body {
 
   <p>Combien d'exercices veux-tu ?</p>
 
-  <button onclick="choisirCircuit(3)">
-    3 EXERCICES
-  </button>
+  <button class="bouton-mode" onclick="choisirCircuit(3)">
+  🔥 3 EXERCICES
+</button>
 
-  <button onclick="choisirCircuit(5)">
-    5 EXERCICES
-  </button>
+<button class="bouton-mode" onclick="choisirCircuit(5)">
+  ⚡ 5 EXERCICES
+</button>
 
   <br><br>
 
-  <button onclick="retourChoixEntrainement()">
-    ← Retour
-  </button>
+  <button class="bouton-retour" onclick="retourChoixEntrainement()">
+  ← Retour
+</button>
 
 </div>
 
@@ -319,7 +483,7 @@ body {
 </div>
 
 <!-- ÉCRAN ENTRAÎNEMENT HASARD -->
-<div id="hasard" style="display:none;">
+<div id="hasard" class="ecran-jeu" style="display:none;">
 
   <h1>🎲 ENTRAÎNEMENT HASARD</h1>
 
@@ -327,6 +491,7 @@ body {
 
   <div id="zoneCartesHasard"></div>
 <button
+  class="bouton-principal"
   id="boutonCommencerExerciceHasard"
   onclick="commencerExerciceHasard()"
   style="display:none;"
@@ -345,15 +510,14 @@ body {
 
   <br><br>
 
-<button onclick="terminerEntrainementHasard()">
+<button class="bouton-principal" onclick="terminerEntrainementHasard()">
   🏁 TERMINER L'ENTRAÎNEMENT
 </button>
   <br><br>
 
-  <button onclick="retourChoixDepuisHasard()">
-    ← Retour
-  </button>
-
+ <button class="bouton-retour" onclick="retourChoixDepuisHasard()">
+  ← Retour
+</button>
 </div>
 
 <!-- ÉCRAN FIN ENTRAÎNEMENT HASARD -->
