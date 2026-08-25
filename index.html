@@ -244,7 +244,13 @@
   <p id="titreHasard"></p>
 
   <div id="zoneCartesHasard"></div>
-
+<button
+  id="boutonCommencerExerciceHasard"
+  onclick="commencerExerciceHasard()"
+  style="display:none;"
+>
+  🔥 COMMENCER L'EXERCICE
+</button>
   <br>
 
   <button
@@ -282,6 +288,32 @@
   </button>
 
 </div>
+<!-- ÉCRAN EXERCICE HASARD EN GRAND -->
+<div id="executionHasard" style="display:none; text-align:center;">
+
+  <h1>🔥 EXERCICE EN COURS</h1>
+
+  <img
+    id="grandeCarteHasard"
+    alt="Exercice hasard"
+    style="
+      max-width:90%;
+      max-height:70vh;
+      border-radius:16px;
+      object-fit:contain;
+    "
+  >
+
+  <br><br>
+
+  <button onclick="exerciceTermineHasard()">
+    ✅ EXERCICE TERMINÉ
+  </button>
+
+</div>
+
+
+
 
   
   
@@ -325,7 +357,7 @@ let totalTempsSecondes = 0;
 let carteHasardActive = false;   
     let totalExercicesHasard = 0;
 let debutEntrainementHasard = 0;
-
+let carteHasardChoisie = "";
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
   document.getElementById("circuit").style.display = "block";
@@ -1060,14 +1092,13 @@ for (let i = 0; i < 6; i++) {
     if (!flip.classList.contains("retournee")) {
 
       carteHasardActive = true;
+      carteHasardChoisie = cartesDisponiblesHasard[i];
       if (debutEntrainementHasard === 0) {
   debutEntrainementHasard = Date.now();
 }
       flip.classList.add("retournee");
-
-      document.getElementById(
-        "boutonExerciceTermineHasard"
-      ).style.display = "inline-block";
+document.getElementById("boutonCommencerExerciceHasard").style.display = "inline-block";
+      
 
     }
   };
@@ -1147,11 +1178,14 @@ function retourChoixDepuisHasard() {
   totalExercicesHasard++;
 
   carteHasardActive = false;
+  carteHasardChoisie = "";
 
-  document.getElementById("boutonExerciceTermineHasard").style.display = "none";
+  document.getElementById("executionHasard").style.display = "none";
+
+  document.getElementById("boutonCommencerExerciceHasard").style.display = "none";
 
   ouvrirHasard();
-}  
+}
 function terminerEntrainementHasard() {
 
   let finHasard = Date.now();
@@ -1196,7 +1230,14 @@ function retourAccueilDepuisHasard() {
 
 }
 
+function commencerExerciceHasard() {
 
+  document.getElementById("hasard").style.display = "none";
+  document.getElementById("executionHasard").style.display = "block";
+
+  document.getElementById("grandeCarteHasard").src = carteHasardChoisie;
+
+}
 
     
   </script>
