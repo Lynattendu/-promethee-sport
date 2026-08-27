@@ -558,7 +558,29 @@ body {
 
 </div>
 
+<!-- ÉCRAN CARTE SPÉCIALE EN GRAND -->
+<div id="specialeEnGrand" class="ecran-jeu" style="display:none; text-align:center;">
 
+  <h1>🔥 CARTE SPÉCIALE</h1>
+
+  <img
+    id="grandeCarteSpeciale"
+    alt="Carte spéciale"
+    style="
+      max-width:90%;
+      max-height:70vh;
+      border-radius:16px;
+      object-fit:contain;
+    "
+  >
+
+  <br><br>
+
+  <button class="bouton-principal" onclick="continuerApresSpeciale()">
+    ➡️ CONTINUER
+  </button>
+
+</div>
 
 
   
@@ -604,6 +626,13 @@ let carteHasardActive = false;
     let totalExercicesHasard = 0;
 let debutEntrainementHasard = 0;
 let carteHasardChoisie = "";
+let carteSpecialeRetournee = false;
+let imageCarteSpecialeChoisie = "";
+
+
+
+
+    
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
   document.getElementById("circuit").style.display = "block";
@@ -614,6 +643,9 @@ function ouvrirCircuit() {
 function choisirCircuit(nombre) {
 
   nombreExercicesCircuit = nombre;
+
+  carteSpecialeRetournee = false;
+imageCarteSpecialeChoisie = "";
 
   document.getElementById("circuit").style.display = "none";
   document.getElementById("cartesCircuit").style.display = "block";
@@ -929,7 +961,12 @@ containerSpeciale.appendChild(flipSpeciale);
 containerSpeciale.onclick = function() {
 
   if (!flipSpeciale.classList.contains("retournee")) {
+
     flipSpeciale.classList.add("retournee");
+
+    carteSpecialeRetournee = true;
+    imageCarteSpecialeChoisie = imageSpeciale;
+
   }
 
 };
@@ -970,9 +1007,21 @@ function retourCircuit() {
   debutCircuit = Date.now();
 
   document.getElementById("cartesCircuit").style.display = "none";
-  document.getElementById("executionCircuit").style.display = "block";
 
-  afficherExerciceCircuit();
+  if (carteSpecialeRetournee) {
+
+    document.getElementById("grandeCarteSpeciale").src =
+      imageCarteSpecialeChoisie;
+
+    document.getElementById("specialeEnGrand").style.display = "block";
+
+  } else {
+
+    document.getElementById("executionCircuit").style.display = "block";
+
+    afficherExerciceCircuit();
+
+  }
 }
 
 
@@ -1485,6 +1534,15 @@ function commencerExerciceHasard() {
 
 }
 
+function continuerApresSpeciale() {
+
+  document.getElementById("specialeEnGrand").style.display = "none";
+
+  document.getElementById("executionCircuit").style.display = "block";
+
+  afficherExerciceCircuit();
+}
+    
     
   </script>
 
