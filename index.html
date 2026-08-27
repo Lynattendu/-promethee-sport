@@ -628,9 +628,9 @@ let debutEntrainementHasard = 0;
 let carteHasardChoisie = "";
 let carteSpecialeRetournee = false;
 let imageCarteSpecialeChoisie = "";
-
-
-
+let carteSpecialeHasardRetournee = false;
+let imageCarteSpecialeHasardChoisie = "";
+let origineCarteSpeciale = "";
 
     
 function ouvrirCircuit() {
@@ -1001,6 +1001,7 @@ function retourCircuit() {
 }
 
  function commencerCircuit() {
+   origineCarteSpeciale = "circuit";
 
   exerciceCircuitActuel = 0;
 
@@ -1148,6 +1149,8 @@ function retourAccueilDepuisFin() {
 }
 
 function ouvrirHasard() {
+  carteSpecialeHasardRetournee = false;
+imageCarteSpecialeHasardChoisie = "";
 carteHasardActive = false;
   document.getElementById("boutonExerciceTermineHasard").style.display = "none";
   document.getElementById("choixEntrainement").style.display = "none";
@@ -1452,7 +1455,12 @@ containerSpecialeHasard.appendChild(flipSpecialeHasard);
 containerSpecialeHasard.onclick = function() {
 
   if (!flipSpecialeHasard.classList.contains("retournee")) {
+
     flipSpecialeHasard.classList.add("retournee");
+
+    carteSpecialeHasardRetournee = true;
+    imageCarteSpecialeHasardChoisie = imageSpecialeHasard;
+
   }
 
 };
@@ -1526,11 +1534,25 @@ function retourAccueilDepuisHasard() {
 }
 
 function commencerExerciceHasard() {
+  origineCarteSpeciale = "hasard";
 
   document.getElementById("hasard").style.display = "none";
-  document.getElementById("executionHasard").style.display = "block";
 
-  document.getElementById("grandeCarteHasard").src = carteHasardChoisie;
+  if (carteSpecialeHasardRetournee) {
+
+    document.getElementById("grandeCarteSpeciale").src =
+      imageCarteSpecialeHasardChoisie;
+
+    document.getElementById("specialeEnGrand").style.display = "block";
+
+  } else {
+
+    document.getElementById("grandeCarteHasard").src =
+      carteHasardChoisie;
+
+    document.getElementById("executionHasard").style.display = "block";
+
+  }
 
 }
 
@@ -1538,9 +1560,23 @@ function continuerApresSpeciale() {
 
   document.getElementById("specialeEnGrand").style.display = "none";
 
-  document.getElementById("executionCircuit").style.display = "block";
+  if (origineCarteSpeciale === "circuit") {
 
-  afficherExerciceCircuit();
+    document.getElementById("executionCircuit").style.display = "block";
+
+    afficherExerciceCircuit();
+
+  }
+
+  if (origineCarteSpeciale === "hasard") {
+
+    document.getElementById("grandeCarteHasard").src =
+      carteHasardChoisie;
+
+    document.getElementById("executionHasard").style.display = "block";
+
+  }
+
 }
     
     
