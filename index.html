@@ -1071,7 +1071,7 @@ cartesDisponibles.sort(() => Math.random() - 0.5);
 
     if (!flip.classList.contains("retournee")) {
       flip.classList.add("retournee");
-      document.getElementById("boutonCommencerExerciceMulti").style.display = "inline-block";
+      
     }
 
   };
@@ -1919,6 +1919,7 @@ function creerCartesMulti() {
 
   carteMultiActive = false;
   carteMultiChoisie = "";
+  document.getElementById("boutonCommencerExerciceMulti").style.display = "none";
 carteSpecialeMultiRetournee = false;
 imageCarteSpecialeMultiChoisie = "";
   
@@ -2109,6 +2110,7 @@ document.getElementById("niveauMulti").textContent = "";
       carteMultiChoisie = cartesMulti[i];
 
       flip.classList.add("retournee");
+      document.getElementById("boutonCommencerExerciceMulti").style.display = "block";
 if (modeMultijoueur === "meme") {
 
   niveauEtoilesMulti = Math.floor(Math.random() * 5) + 1;
