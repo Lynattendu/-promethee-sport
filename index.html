@@ -1958,6 +1958,25 @@ function finPartieMulti() {
 
 }
 
+ function retourAccueilDepuisFinMulti() {
+
+  document.getElementById("finMulti").style.display = "none";
+  document.getElementById("accueil").style.display = "block";
+
+  modeMultijoueur = "";
+  joueursMulti = [];
+  joueurMultiActuel = 0;
+
+  carteMultiActive = false;
+  carteMultiChoisie = "";
+
+  niveauEtoilesMulti = 0;
+
+  carteSpecialeMultiRetournee = false;
+  imageCarteSpecialeMultiChoisie = "";
+
+}   
+
 function creerCartesMulti() {
 
   carteMultiActive = false;
