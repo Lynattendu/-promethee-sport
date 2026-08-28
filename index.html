@@ -2037,7 +2037,68 @@ function creerCartesMulti() {
 
     zone.appendChild(container);
   }
+// ----- CARTE SPÉCIALE FACULTATIVE MULTI -----
 
+let titreSpecialeMulti = document.createElement("h2");
+titreSpecialeMulti.textContent = "🔥 Tu veux défier les dieux ?";
+titreSpecialeMulti.style.marginTop = "30px";
+
+let texteSpecialeMulti = document.createElement("p");
+texteSpecialeMulti.textContent = "La carte spéciale est facultative.";
+
+zone.appendChild(titreSpecialeMulti);
+zone.appendChild(texteSpecialeMulti);
+
+
+// Tirage d'une carte spéciale parmi les 30
+
+let numeroSpecialeMulti =
+  Math.floor(Math.random() * 30) + 1;
+
+let numeroSpecialeMultiFormate =
+  String(numeroSpecialeMulti).padStart(2, "0");
+
+let imageSpecialeMulti =
+  "images/Cartes/Speciales/speciales-" +
+  numeroSpecialeMultiFormate +
+  ".PNG";
+
+
+// Création de la carte spéciale
+
+let containerSpecialeMulti = document.createElement("div");
+containerSpecialeMulti.className = "carte-container";
+
+let flipSpecialeMulti = document.createElement("div");
+flipSpecialeMulti.className = "carte-flip";
+
+let dosSpecialeMulti = document.createElement("img");
+dosSpecialeMulti.src = "images/Dos/dos-speciales.PNG";
+dosSpecialeMulti.className = "carte-face";
+dosSpecialeMulti.alt = "Dos de carte spéciale";
+
+let avantSpecialeMulti = document.createElement("img");
+avantSpecialeMulti.src = imageSpecialeMulti;
+avantSpecialeMulti.className = "carte-face carte-face-avant";
+avantSpecialeMulti.alt = "Carte spéciale";
+
+flipSpecialeMulti.appendChild(dosSpecialeMulti);
+flipSpecialeMulti.appendChild(avantSpecialeMulti);
+
+containerSpecialeMulti.appendChild(flipSpecialeMulti);
+
+
+// Retournement facultatif
+
+containerSpecialeMulti.onclick = function() {
+
+  if (!flipSpecialeMulti.classList.contains("retournee")) {
+    flipSpecialeMulti.classList.add("retournee");
+  }
+
+};
+
+zone.appendChild(containerSpecialeMulti);
 }
 
 
