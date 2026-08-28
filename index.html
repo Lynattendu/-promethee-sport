@@ -671,7 +671,34 @@ body {
 
 </div>
 
+<!-- ÉCRAN PLATEAU MULTI -->
+<div id="plateauMulti" class="ecran-jeu" style="display:none;">
 
+  <h1 id="tourJoueurMulti">
+    🔥 AU TOUR DE ...
+  </h1>
+
+  <p id="infoModeMulti"></p>
+
+  <div id="zoneCartesMulti"></div>
+
+  <br>
+
+  <button
+    class="bouton-principal"
+    onclick="joueurSuivantMulti()"
+  >
+    ➡️ JOUEUR SUIVANT
+  </button>
+
+  <button
+    class="bouton-retour"
+    onclick="finPartieMulti()"
+  >
+    🏁 FIN DE PARTIE
+  </button>
+
+</div>
 
   
   
@@ -1741,10 +1768,10 @@ function validerJoueursMulti() {
 
   joueurMultiActuel = 0;
 
-  alert(
-    "Partie prête avec : " +
-    joueursMulti.join(", ")
-  );
+document.getElementById("joueursMulti").style.display = "none";
+document.getElementById("plateauMulti").style.display = "block";
+
+afficherTourMulti();
 
 }
 
@@ -1754,8 +1781,69 @@ function retourModeMulti() {
   document.getElementById("joueursMulti").style.display = "none";
   document.getElementById("multijoueur").style.display = "block";
 
+  joueursMulti = [];
+  joueurMultiActuel = 0;
+
+  let liste = document.getElementById("listeJoueursMulti");
+
+  liste.innerHTML = `
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 1"
+    >
+
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 2"
+    >
+  `;
 }
 
+function afficherTourMulti() {
+
+  let pseudo = joueursMulti[joueurMultiActuel];
+
+  document.getElementById("tourJoueurMulti").textContent =
+    "🔥 AU TOUR DE " + pseudo.toUpperCase();
+
+  if (modeMultijoueur === "meme") {
+
+    document.getElementById("infoModeMulti").textContent =
+      "⚖️ Même niveau";
+
+  }
+
+  if (modeMultijoueur === "different") {
+
+    document.getElementById("infoModeMulti").textContent =
+      "🔥 Niveaux différents";
+
+  }
+
+}
+
+function joueurSuivantMulti() {
+
+  joueurMultiActuel++;
+
+  if (joueurMultiActuel >= joueursMulti.length) {
+    joueurMultiActuel = 0;
+  }
+
+  afficherTourMulti();
+
+}
+
+function finPartieMulti() {
+
+  alert("Fin de partie");
+
+}
+
+
+    
     
     
   </script>
