@@ -681,7 +681,14 @@ body {
   </h1>
 
   <p id="infoModeMulti"></p>
-
+<p
+  id="niveauMulti"
+  style="
+    font-size:24px;
+    font-weight:bold;
+    min-height:32px;
+  "
+></p>
   <div id="zoneCartesMulti"></div>
 
   <br>
@@ -755,7 +762,7 @@ let joueursMulti = [];
 let joueurMultiActuel = 0;
  let carteMultiActive = false;
 let carteMultiChoisie = "";   
-
+let niveauEtoilesMulti = 0;
     
     
 function ouvrirCircuit() {
@@ -1849,9 +1856,11 @@ function creerCartesMulti() {
 
   carteMultiActive = false;
   carteMultiChoisie = "";
-
+niveauEtoilesMulti = 0;
+  
   let zone = document.getElementById("zoneCartesMulti");
-
+document.getElementById("niveauMulti").textContent = "";
+  
   zone.innerHTML = "";
 
   // Toutes les cartes exercices réunies
@@ -2034,7 +2043,21 @@ function creerCartesMulti() {
       carteMultiChoisie = cartesMulti[i];
 
       flip.classList.add("retournee");
+if (modeMultijoueur === "meme") {
 
+  niveauEtoilesMulti = Math.floor(Math.random() * 5) + 1;
+
+  let etoiles = "⭐".repeat(niveauEtoilesMulti);
+
+  document.getElementById("niveauMulti").textContent =
+    "Niveau à réaliser : " + etoiles;
+
+} else {
+
+  document.getElementById("niveauMulti").textContent =
+    "Réalise ton niveau indiqué sur la carte.";
+
+}
     };
 
     zone.appendChild(container);
