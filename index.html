@@ -282,6 +282,35 @@ body {
 #zoneCartesHasard {
   text-align: left;
 }
+#listeJoueursMulti {
+  width: min(92%, 430px);
+  margin: 20px auto;
+}
+
+.champ-joueur {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  margin: 12px 0;
+  padding: 16px 18px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  font-size: 18px;
+}
+
+.champ-joueur::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+
+
+
 
   
 </style>
@@ -653,7 +682,9 @@ let carteSpecialeHasardRetournee = false;
 let imageCarteSpecialeHasardChoisie = "";
 let origineCarteSpeciale = "";
 let modeMultijoueur = "";
-
+let joueursMulti = [];
+let joueurMultiActuel = 0;
+    
 
     
     
@@ -1615,13 +1646,8 @@ function choisirModeMulti(mode) {
 
   modeMultijoueur = mode;
 
-  if (mode === "meme") {
-    alert("Mode même niveau choisi");
-  }
-
-  if (mode === "different") {
-    alert("Mode niveaux différents choisi");
-  }
+  document.getElementById("multijoueur").style.display = "none";
+  document.getElementById("joueursMulti").style.display = "block";
 
 }
 
@@ -1632,8 +1658,97 @@ function retourAccueilDepuisMulti() {
   document.getElementById("accueil").style.display = "block";
 
 }
+<!-- ÉCRAN JOUEURS MULTI -->
+<div id="joueursMulti" class="ecran-jeu" style="display:none;">
+
+  <h1>👥 LES JOUEURS</h1>
+
+  <p>Entre les pseudos des participants</p>
+
+  <div id="listeJoueursMulti">
+
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 1"
+    >
+
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 2"
+    >
+
+  </div>
+
+  <button class="bouton-mode" onclick="ajouterJoueurMulti()">
+    ➕ AJOUTER UN JOUEUR
+  </button>
+
+  <button class="bouton-principal" onclick="validerJoueursMulti()">
+    🔥 COMMENCER LA PARTIE
+  </button>
+
+  <button class="bouton-retour" onclick="retourModeMulti()">
+    ← Retour
+  </button>
+
+</div>
+function ajouterJoueurMulti() {
+
+  let liste = document.getElementById("listeJoueursMulti");
+
+  let nombre = liste.querySelectorAll(".champ-joueur").length + 1;
+
+  let input = document.createElement("input");
+
+  input.className = "champ-joueur";
+  input.type = "text";
+  input.placeholder = "Joueur " + nombre;
+
+  liste.appendChild(input);
+}
 
 
+function validerJoueursMulti() {
+
+  let champs = document.querySelectorAll(".champ-joueur");
+
+  joueursMulti = [];
+
+  champs.forEach(function(champ) {
+
+    let pseudo = champ.value.trim();
+
+    if (pseudo !== "") {
+      joueursMulti.push(pseudo);
+    }
+
+  });
+
+  if (joueursMulti.length < 2) {
+
+    alert("Il faut au moins 2 joueurs.");
+
+    return;
+  }
+
+  joueurMultiActuel = 0;
+
+  alert(
+    "Partie prête avec : " +
+    joueursMulti.join(", ")
+  );
+
+}
+
+
+function retourModeMulti() {
+
+  document.getElementById("joueursMulti").style.display = "none";
+  document.getElementById("multijoueur").style.display = "block";
+
+}
 
     
     
