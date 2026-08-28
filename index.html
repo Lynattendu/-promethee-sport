@@ -633,6 +633,46 @@ body {
   </button>
 
 </div>
+
+<!-- ÉCRAN JOUEURS MULTI -->
+<div id="joueursMulti" class="ecran-jeu" style="display:none;">
+
+  <h1>👥 LES JOUEURS</h1>
+
+  <p>Entre les pseudos des participants</p>
+
+  <div id="listeJoueursMulti">
+
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 1"
+    >
+
+    <input
+      class="champ-joueur"
+      type="text"
+      placeholder="Joueur 2"
+    >
+
+  </div>
+
+  <button class="bouton-mode" onclick="ajouterJoueurMulti()">
+    ➕ AJOUTER UN JOUEUR
+  </button>
+
+  <button class="bouton-principal" onclick="validerJoueursMulti()">
+    🔥 COMMENCER LA PARTIE
+  </button>
+
+  <button class="bouton-retour" onclick="retourModeMulti()">
+    ← Retour
+  </button>
+
+</div>
+
+
+
   
   
   <script>
@@ -1658,42 +1698,7 @@ function retourAccueilDepuisMulti() {
   document.getElementById("accueil").style.display = "block";
 
 }
-<!-- ÉCRAN JOUEURS MULTI -->
-<div id="joueursMulti" class="ecran-jeu" style="display:none;">
 
-  <h1>👥 LES JOUEURS</h1>
-
-  <p>Entre les pseudos des participants</p>
-
-  <div id="listeJoueursMulti">
-
-    <input
-      class="champ-joueur"
-      type="text"
-      placeholder="Joueur 1"
-    >
-
-    <input
-      class="champ-joueur"
-      type="text"
-      placeholder="Joueur 2"
-    >
-
-  </div>
-
-  <button class="bouton-mode" onclick="ajouterJoueurMulti()">
-    ➕ AJOUTER UN JOUEUR
-  </button>
-
-  <button class="bouton-principal" onclick="validerJoueursMulti()">
-    🔥 COMMENCER LA PARTIE
-  </button>
-
-  <button class="bouton-retour" onclick="retourModeMulti()">
-    ← Retour
-  </button>
-
-</div>
 function ajouterJoueurMulti() {
 
   let liste = document.getElementById("listeJoueursMulti");
