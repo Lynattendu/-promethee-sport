@@ -763,6 +763,10 @@ let joueurMultiActuel = 0;
  let carteMultiActive = false;
 let carteMultiChoisie = "";   
 let niveauEtoilesMulti = 0;
+let carteSpecialeMultiRetournee = false;
+let imageCarteSpecialeMultiChoisie = "";
+
+
     
     
 function ouvrirCircuit() {
@@ -1856,6 +1860,9 @@ function creerCartesMulti() {
 
   carteMultiActive = false;
   carteMultiChoisie = "";
+carteSpecialeMultiRetournee = false;
+imageCarteSpecialeMultiChoisie = "";
+  
 niveauEtoilesMulti = 0;
   
   let zone = document.getElementById("zoneCartesMulti");
@@ -2077,15 +2084,38 @@ zone.appendChild(texteSpecialeMulti);
 
 // Tirage d'une carte spéciale parmi les 30
 
-let numeroSpecialeMulti =
-  Math.floor(Math.random() * 30) + 1;
+let numeroSpecialeMulti = "";
 
-let numeroSpecialeMultiFormate =
-  String(numeroSpecialeMulti).padStart(2, "0");
+if (modeMultijoueur === "meme") {
+
+  let numeroAleatoire =
+    Math.floor(Math.random() * 30) + 1;
+
+  numeroSpecialeMulti =
+    String(numeroAleatoire).padStart(2, "0");
+
+}
+
+if (modeMultijoueur === "different") {
+
+  const cartesSpecialesMultiDifferent = [
+    "15",
+    "26"
+  ];
+
+  numeroSpecialeMulti =
+    cartesSpecialesMultiDifferent[
+      Math.floor(
+        Math.random() *
+        cartesSpecialesMultiDifferent.length
+      )
+    ];
+
+}
 
 let imageSpecialeMulti =
   "images/Cartes/Speciales/speciales-" +
-  numeroSpecialeMultiFormate +
+  numeroSpecialeMulti +
   ".PNG";
 
 
@@ -2118,7 +2148,12 @@ containerSpecialeMulti.appendChild(flipSpecialeMulti);
 containerSpecialeMulti.onclick = function() {
 
   if (!flipSpecialeMulti.classList.contains("retournee")) {
+
     flipSpecialeMulti.classList.add("retournee");
+
+    carteSpecialeMultiRetournee = true;
+    imageCarteSpecialeMultiChoisie = imageSpecialeMulti;
+
   }
 
 };
