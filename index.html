@@ -840,8 +840,8 @@ let carteMultiChoisie = "";
 let niveauEtoilesMulti = 0;
 let carteSpecialeMultiRetournee = false;
 let imageCarteSpecialeMultiChoisie = "";
-
-
+let exercicesParJoueur = {};
+let debutPartieMulti = 0;
     
     
 function ouvrirCircuit() {
@@ -1863,6 +1863,13 @@ function validerJoueursMulti() {
   }
 
   joueurMultiActuel = 0;
+  exercicesParJoueur = {};
+
+joueursMulti.forEach(function(joueur) {
+  exercicesParJoueur[joueur] = 0;
+});
+
+debutPartieMulti = Date.now();
 
 document.getElementById("joueursMulti").style.display = "none";
 document.getElementById("plateauMulti").style.display = "block";
@@ -2332,6 +2339,9 @@ function afficherExerciceMultiEnGrand() {
 
 
 function joueurSuivantDepuisExerciceMulti() {
+  let joueurActuel = joueursMulti[joueurMultiActuel];
+
+exercicesParJoueur[joueurActuel]++;
 
   document.getElementById("executionMulti").style.display = "none";
 
