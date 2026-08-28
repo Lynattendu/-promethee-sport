@@ -690,7 +690,14 @@ body {
   "
 ></p>
   <div id="zoneCartesMulti"></div>
-
+<button
+  id="boutonCommencerExerciceMulti"
+  class="bouton-principal"
+  onclick="commencerExerciceMulti()"
+  style="display:none;"
+>
+  🔥 COMMENCER L'EXERCICE
+</button>
   <br>
 
   <button
@@ -708,6 +715,51 @@ body {
   </button>
 
 </div>
+
+<!-- ÉCRAN EXERCICE MULTI EN GRAND -->
+<div id="executionMulti" class="ecran-jeu" style="display:none; text-align:center;">
+
+  <h1 id="titreExecutionMulti">🔥 EXERCICE EN COURS</h1>
+
+  <div
+    id="niveauExecutionMulti"
+    style="
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:18px;
+    "
+  ></div>
+
+  <img
+    id="grandeCarteMulti"
+    alt="Exercice multijoueur"
+    style="
+      max-width:90%;
+      max-height:70vh;
+      border-radius:16px;
+      object-fit:contain;
+    "
+  >
+
+  <br><br>
+
+  <button
+    class="bouton-principal"
+    onclick="joueurSuivantDepuisExerciceMulti()"
+  >
+    ➡️ JOUEUR SUIVANT
+  </button>
+
+  <button
+    class="bouton-retour"
+    onclick="finPartieMulti()"
+  >
+    🏁 FIN DE PARTIE
+  </button>
+
+</div>
+
+
 
   
   
@@ -1019,6 +1071,7 @@ cartesDisponibles.sort(() => Math.random() - 0.5);
 
     if (!flip.classList.contains("retournee")) {
       flip.classList.add("retournee");
+      document.getElementById("boutonCommencerExerciceMulti").style.display = "inline-block";
     }
 
   };
@@ -1712,6 +1765,12 @@ function continuerApresSpeciale() {
     document.getElementById("executionHasard").style.display = "block";
 
   }
+  if (origineCarteSpeciale === "multi") {
+
+  afficherExerciceMultiEnGrand();
+
+}
+  
 
 }
 
@@ -2161,7 +2220,68 @@ containerSpecialeMulti.onclick = function() {
 zone.appendChild(containerSpecialeMulti);
 }
 
+function commencerExerciceMulti() {
 
+  document.getElementById("plateauMulti").style.display = "none";
+
+  if (carteSpecialeMultiRetournee) {
+
+    document.getElementById("grandeCarteSpeciale").src =
+      imageCarteSpecialeMultiChoisie;
+
+    origineCarteSpeciale = "multi";
+
+    document.getElementById("specialeEnGrand").style.display = "block";
+
+  } else {
+
+    afficherExerciceMultiEnGrand();
+
+  }
+
+}
+
+
+function afficherExerciceMultiEnGrand() {
+
+  document.getElementById("executionMulti").style.display = "block";
+
+  document.getElementById("grandeCarteMulti").src =
+    carteMultiChoisie;
+
+  let niveau = document.getElementById("niveauExecutionMulti");
+
+  if (modeMultijoueur === "meme") {
+
+    niveau.textContent =
+      "Niveau à réaliser : " +
+      "⭐".repeat(niveauEtoilesMulti);
+
+  } else {
+
+    niveau.textContent =
+      "Réalise le niveau indiqué sur ta carte.";
+
+  }
+
+}
+
+
+function joueurSuivantDepuisExerciceMulti() {
+
+  document.getElementById("executionMulti").style.display = "none";
+
+  joueurMultiActuel++;
+
+  if (joueurMultiActuel >= joueursMulti.length) {
+    joueurMultiActuel = 0;
+  }
+
+  document.getElementById("plateauMulti").style.display = "block";
+
+  afficherTourMulti();
+
+}
 
     
     
