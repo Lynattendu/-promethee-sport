@@ -307,7 +307,7 @@ body {
   <span>Entraînement • Hasard • Circuit</span>
 </button>
 
-<button class="bouton-accueil">
+<button class="bouton-accueil" onclick="ouvrirMultijoueur()">
   👥 JEU À PLUSIEURS
   <span>Défis • Cartes spéciales • Entre amis</span>
 </button>
@@ -584,7 +584,26 @@ body {
 
 </div>
 
+<!-- ÉCRAN JEU À PLUSIEURS -->
+<div id="multijoueur" class="ecran-jeu" style="display:none;">
 
+  <h1>👥 JEU À PLUSIEURS</h1>
+
+  <p>Comment voulez-vous jouer ?</p>
+
+  <button class="bouton-mode" onclick="choisirModeMulti('meme')">
+    ⚖️ MÊME NIVEAU
+  </button>
+
+  <button class="bouton-mode" onclick="choisirModeMulti('different')">
+    🔥 NIVEAUX DIFFÉRENTS
+  </button>
+
+  <button class="bouton-retour" onclick="retourAccueilDepuisMulti()">
+    ← Retour
+  </button>
+
+</div>
   
   
   <script>
@@ -633,7 +652,10 @@ let imageCarteSpecialeChoisie = "";
 let carteSpecialeHasardRetournee = false;
 let imageCarteSpecialeHasardChoisie = "";
 let origineCarteSpeciale = "";
+let modeMultijoueur = "";
 
+
+    
     
 function ouvrirCircuit() {
   document.getElementById("choixEntrainement").style.display = "none";
@@ -1580,6 +1602,39 @@ function continuerApresSpeciale() {
   }
 
 }
+
+function ouvrirMultijoueur() {
+
+  document.getElementById("accueil").style.display = "none";
+  document.getElementById("multijoueur").style.display = "block";
+
+}
+
+
+function choisirModeMulti(mode) {
+
+  modeMultijoueur = mode;
+
+  if (mode === "meme") {
+    alert("Mode même niveau choisi");
+  }
+
+  if (mode === "different") {
+    alert("Mode niveaux différents choisi");
+  }
+
+}
+
+
+function retourAccueilDepuisMulti() {
+
+  document.getElementById("multijoueur").style.display = "none";
+  document.getElementById("accueil").style.display = "block";
+
+}
+
+
+
     
     
   </script>
