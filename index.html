@@ -763,7 +763,16 @@ body {
 <div id="finMulti" class="ecran-jeu" style="display:none; text-align:center;">
 
   <h1>🔥 ÉPREUVE TERMINÉE</h1>
-
+<p
+  id="bilanMulti"
+  style="
+    font-size:20px;
+    line-height:1.6;
+    margin:25px auto;
+    max-width:500px;
+    white-space:pre-line;
+  "
+></p>
   <p
     id="phraseFinMulti"
     style="
@@ -1960,7 +1969,40 @@ function finPartieMulti() {
     phrasesFin[Math.floor(Math.random() * phrasesFin.length)];
 
   document.getElementById("phraseFinMulti").textContent = phrase;
+let lignesBilan = [];
 
+for (let joueur of joueursMulti) {
+
+  let nombre = exercicesParJoueur[joueur] || 0;
+
+  lignesBilan.push(
+    joueur + " — " + nombre + " exercice" + (nombre > 1 ? "s" : "")
+  );
+
+}
+
+let tempsTotalSecondes = 0;
+
+if (debutPartieMulti > 0) {
+  tempsTotalSecondes =
+    Math.floor((Date.now() - debutPartieMulti) / 1000);
+}
+
+let minutes = Math.floor(tempsTotalSecondes / 60);
+let secondes = tempsTotalSecondes % 60;
+
+let texteTemps = "";
+
+if (minutes > 0) {
+  texteTemps = minutes + " min " + secondes + " s";
+} else {
+  texteTemps = secondes + " s";
+}
+
+document.getElementById("bilanMulti").textContent =
+  lignesBilan.join("\n") +
+  "\n\n⏱️ Temps total : " +
+  texteTemps;
   document.getElementById("finMulti").style.display = "block";
 
 }
