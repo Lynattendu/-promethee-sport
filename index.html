@@ -759,7 +759,30 @@ body {
 
 </div>
 
+<!-- ÉCRAN FIN DE PARTIE MULTI -->
+<div id="finMulti" class="ecran-jeu" style="display:none; text-align:center;">
 
+  <h1>🔥 ÉPREUVE TERMINÉE</h1>
+
+  <p
+    id="phraseFinMulti"
+    style="
+      font-size:24px;
+      font-weight:bold;
+      max-width:500px;
+      margin:35px auto;
+      line-height:1.5;
+    "
+  ></p>
+
+  <button
+    class="bouton-principal"
+    onclick="retourAccueilDepuisFinMulti()"
+  >
+    🏠 RETOUR À L'ACCUEIL
+  </button>
+
+</div>
 
   
   
@@ -1911,7 +1934,27 @@ function joueurSuivantMulti() {
 
 function finPartieMulti() {
 
-  alert("Fin de partie");
+  document.getElementById("plateauMulti").style.display = "none";
+  document.getElementById("executionMulti").style.display = "none";
+  document.getElementById("specialeEnGrand").style.display = "none";
+
+  const phrasesFin = [
+    "🔥 Prométhée valide votre épreuve.",
+    "⚡ Les dieux réclament déjà une revanche.",
+    "💪 Vous êtes venus jouer. Vous repartez plus forts.",
+    "🏛️ L’Olympe vous accorde une pause… pour l’instant.",
+    "💧 Belle partie. Maintenant, hydratez-vous, héros. 😄",
+    "🔥 Les flammes de Prométhée brûlent encore. Belle épreuve !",
+    "⚔️ Mission accomplie. L’Olympe se souviendra de votre passage.",
+    "🌟 Les dieux vous regardaient. Ils sont plutôt impressionnés."
+  ];
+
+  let phrase =
+    phrasesFin[Math.floor(Math.random() * phrasesFin.length)];
+
+  document.getElementById("phraseFinMulti").textContent = phrase;
+
+  document.getElementById("finMulti").style.display = "block";
 
 }
 
