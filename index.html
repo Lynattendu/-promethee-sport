@@ -751,7 +751,8 @@ let origineCarteSpeciale = "";
 let modeMultijoueur = "";
 let joueursMulti = [];
 let joueurMultiActuel = 0;
-    
+ let carteMultiActive = false;
+let carteMultiChoisie = "";   
 
     
     
@@ -1821,7 +1822,7 @@ function afficherTourMulti() {
       "🔥 Niveaux différents";
 
   }
-
+creerCartesMulti();
 }
 
 function joueurSuivantMulti() {
@@ -1842,7 +1843,217 @@ function finPartieMulti() {
 
 }
 
+function creerCartesMulti() {
 
+  carteMultiActive = false;
+  carteMultiChoisie = "";
+
+  let zone = document.getElementById("zoneCartesMulti");
+
+  zone.innerHTML = "";
+
+  // Toutes les cartes exercices réunies
+  let cartesMulti = [
+
+ "🍑 FESSIERS": [
+    "images/Cartes/fessiers-01.PNG",
+    "images/Cartes/fessiers-02.PNG",
+    "images/Cartes/fessiers-03.PNG",
+    "images/Cartes/fessiers-04.PNG",
+    "images/Cartes/fessiers-05.PNG",
+    "images/Cartes/fessiers-06.PNG",
+    "images/Cartes/fessiers-07.PNG",
+    "images/Cartes/fessiers-08.PNG",
+    "images/Cartes/fessiers-09.PNG",
+    "images/Cartes/fessiers-10.PNG",
+    "images/Cartes/fessiers-11.PNG",
+    "images/Cartes/fessiers-12.PNG"
+  ],
+
+"🦵 JAMBES": [
+  "images/Cartes/jambes-01.PNG",
+  "images/Cartes/jambes-02.PNG",
+  "images/Cartes/jambes-03.PNG",
+  "images/Cartes/jambes-04.PNG",
+  "images/Cartes/jambes-05.PNG",
+  "images/Cartes/jambes-06.PNG",
+  "images/Cartes/jambes-07.PNG",
+  "images/Cartes/jambes-08.PNG",
+  "images/Cartes/jambes-09.PNG",
+  "images/Cartes/jambes-10.PNG",
+  "images/Cartes/jambes-11.PNG",
+  "images/Cartes/jambes-12.PNG",
+  "images/Cartes/jambes-13.PNG",
+  "images/Cartes/jambes-14.PNG",
+  "images/Cartes/jambes-15.PNG"
+],
+
+ "💪 BRAS": [
+  "images/Cartes/bras-01.PNG",
+  "images/Cartes/bras-02.PNG",
+  "images/Cartes/bras-03.PNG",
+  "images/Cartes/bras-04.PNG",
+  "images/Cartes/bras-05.PNG",
+  "images/Cartes/bras-06.PNG",
+  "images/Cartes/bras-07.PNG",
+  "images/Cartes/bras-08.PNG",
+  "images/Cartes/bras-09.PNG",
+  "images/Cartes/bras-10.PNG",
+  "images/Cartes/bras-11.PNG",
+  "images/Cartes/bras-12.PNG",
+  "images/Cartes/bras-13.PNG",
+  "images/Cartes/bras-14.PNG",
+  "images/Cartes/bras-15.PNG",
+  "images/Cartes/bras-16.PNG",
+  "images/Cartes/bras-17.PNG",
+  "images/Cartes/bras-18.PNG",
+  "images/Cartes/bras-19.PNG",
+  "images/Cartes/bras-20.PNG",  
+  "images/Cartes/bras-21.PNG"
+   
+],
+
+"🔥 ABDOS": [
+  "images/Cartes/abdos-01.PNG",
+  "images/Cartes/abdos-02.PNG",
+  "images/Cartes/abdos-03.PNG",
+  "images/Cartes/abdos-04.PNG",
+  "images/Cartes/abdos-05.PNG",
+  "images/Cartes/abdos-06.PNG",
+  "images/Cartes/abdos-07.PNG",
+  "images/Cartes/abdos-08.PNG",
+  "images/Cartes/abdos-09.PNG",
+  "images/Cartes/abdos-10.PNG",
+  "images/Cartes/abdos-11.PNG",
+  "images/Cartes/abdos-12.PNG",
+  "images/Cartes/abdos-13.PNG",
+  "images/Cartes/abdos-14.PNG",
+  "images/Cartes/abdos-15.PNG",
+  "images/Cartes/abdos-16.PNG",
+  "images/Cartes/abdos-17.PNG",
+  "images/Cartes/abdos-18.PNG",
+  "images/Cartes/abdos-19.PNG",
+  "images/Cartes/abdos-20.PNG",
+  "images/Cartes/abdos-21.PNG",
+  "images/Cartes/abdos-22.PNG",
+  "images/Cartes/abdos-23.PNG",
+  "images/Cartes/abdos-24.PNG",
+  "images/Cartes/abdos-25.PNG",
+  "images/Cartes/abdos-26.PNG",
+  "images/Cartes/abdos-27.PNG",
+  "images/Cartes/abdos-28.PNG",
+  "images/Cartes/abdos-29.PNG"
+],
+
+"🛡️ DOS": [
+  "images/Cartes/dos-01.PNG",
+  "images/Cartes/dos-02.PNG",
+  "images/Cartes/dos-03.PNG",
+  "images/Cartes/dos-04.PNG",
+  "images/Cartes/dos-05.PNG",
+  "images/Cartes/dos-06.PNG",
+  "images/Cartes/dos-07.PNG",
+  "images/Cartes/dos-08.PNG",
+  "images/Cartes/dos-09.PNG",
+  "images/Cartes/dos-10.PNG",
+  "images/Cartes/dos-11.PNG",
+  "images/Cartes/dos-12.PNG",
+  "images/Cartes/dos-13.PNG",
+  "images/Cartes/dos-14.PNG",
+  "images/Cartes/dos-15.PNG",
+  "images/Cartes/dos-16.PNG",
+  "images/Cartes/dos-17.PNG",
+  "images/Cartes/dos-18.PNG",
+  "images/Cartes/dos-19.PNG", 
+  "images/Cartes/dos-20.PNG"
+],
+
+"⚡ CORPS COMPLET": [
+  "images/Cartes/corps-complet-01.jpg",
+  "images/Cartes/corps-complet-02.PNG",
+  "images/Cartes/corps-complet-03.jpg",
+  "images/Cartes/corps-complet-04.jpg",
+  "images/Cartes/corps-complet-05.jpg",
+  "images/Cartes/corps-complet-06.jpg",
+  "images/Cartes/corps-complet-07.jpg",
+  "images/Cartes/corps-complet-08.jpg",
+  "images/Cartes/corps-complet-09.jpg",
+  "images/Cartes/corps-complet-10.jpg",
+  "images/Cartes/corps-complet-11.jpg",
+  "images/Cartes/corps-complet-12.PNG",
+  "images/Cartes/corps-complet-13.PNG",
+  "images/Cartes/corps-complet-14.PNG",
+  "images/Cartes/corps-complet-15.PNG",
+  "images/Cartes/corps-complet-16.PNG",
+  "images/Cartes/corps-complet-17.PNG",
+  "images/Cartes/corps-complet-18.PNG",
+  "images/Cartes/corps-complet-19.PNG",
+  "images/Cartes/corps-complet-20.PNG",
+  "images/Cartes/corps-complet-21.PNG",
+  "images/Cartes/corps-complet-22.PNG",
+  "images/Cartes/corps-complet-23.PNG",
+  "images/Cartes/corps-complet-24.PNG",
+  "images/Cartes/corps-complet-25.PNG",
+  "images/Cartes/corps-complet-26.PNG",
+  "images/Cartes/corps-complet-27.PNG",
+  "images/Cartes/corps-complet-28.PNG",
+  "images/Cartes/corps-complet-29.PNG",
+  "images/Cartes/corps-complet-30.PNG",
+  "images/Cartes/corps-complet-31.PNG",  
+  "images/Cartes/corps-complet-32.PNG"
+]
+
+  ];
+
+  // Pour l'instant, on teste avec Fessiers + Jambes.
+  // On ajoutera ensuite Bras, Abdos, Dos et Corps complet.
+
+  cartesMulti.sort(() => Math.random() - 0.5);
+
+  for (let i = 0; i < 6; i++) {
+
+    let container = document.createElement("div");
+    container.className = "carte-container";
+
+    let flip = document.createElement("div");
+    flip.className = "carte-flip";
+
+    let dos = document.createElement("img");
+    dos.src = "images/Dos/dos-toutes-familles.PNG";
+    dos.className = "carte-face";
+    dos.alt = "Dos de carte";
+
+    let avant = document.createElement("img");
+    avant.src = cartesMulti[i];
+    avant.className = "carte-face carte-face-avant";
+    avant.alt = "Carte exercice";
+
+    flip.appendChild(dos);
+    flip.appendChild(avant);
+
+    container.appendChild(flip);
+
+    container.onclick = function() {
+
+      if (carteMultiActive) {
+        return;
+      }
+
+      carteMultiActive = true;
+      carteMultiChoisie = cartesMulti[i];
+
+      flip.classList.add("retournee");
+
+    };
+
+    zone.appendChild(container);
+  }
+
+}
+
+
+
+    
     
     
     
