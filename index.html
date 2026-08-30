@@ -443,7 +443,14 @@ body {
   <h1>🔥 TON CIRCUIT</h1>
 
   <p id="infoCircuit"></p>
-
+<p
+  id="seriesCircuit"
+  style="
+    font-size:26px;
+    font-weight:bold;
+    margin:15px 0 20px;
+  "
+></p>
   <div id="zoneCartes"></div>
 
   <br>
@@ -867,7 +874,7 @@ let imageCarteSpecialeMultiChoisie = "";
 let exercicesParJoueur = {};
 let debutPartieMulti = 0;
 let nombreSeriesHasard = 0;
-    
+ let nombreSeriesCircuit = 0;   
     
     
 function ouvrirCircuit() {
@@ -880,7 +887,8 @@ function ouvrirCircuit() {
 function choisirCircuit(nombre) {
 
   nombreExercicesCircuit = nombre;
-
+nombreSeriesCircuit =
+  Math.floor(Math.random() * 4) + 2;
   carteSpecialeRetournee = false;
 imageCarteSpecialeChoisie = "";
 
@@ -889,7 +897,8 @@ imageCarteSpecialeChoisie = "";
 
   document.getElementById("infoCircuit").textContent =
     familleChoisie + " • " + nombre + " exercices";
-
+document.getElementById("seriesCircuit").textContent =
+  "🔥 " + nombreSeriesCircuit + " SÉRIES";
   let imageDos = "";
 
   if (familleChoisie === "⚡ CORPS COMPLET") {
