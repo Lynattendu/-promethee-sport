@@ -521,7 +521,14 @@ body {
   <h1>🎲 ENTRAÎNEMENT HASARD</h1>
 
   <p id="titreHasard"></p>
-
+<p
+  id="seriesHasard"
+  style="
+    font-size:26px;
+    font-weight:bold;
+    min-height:34px;
+  "
+></p>
   <div id="zoneCartesHasard"></div>
 <button
   class="bouton-principal"
@@ -571,6 +578,14 @@ body {
 <div id="executionHasard" style="display:none; text-align:center;">
 
   <h1>🔥 EXERCICE EN COURS</h1>
+  <p
+  id="seriesHasardGrand"
+  style="
+    font-size:28px;
+    font-weight:bold;
+    margin:15px 0 20px;
+  "
+></p>
 
   <img
     id="grandeCarteHasard"
@@ -851,6 +866,8 @@ let carteSpecialeMultiRetournee = false;
 let imageCarteSpecialeMultiChoisie = "";
 let exercicesParJoueur = {};
 let debutPartieMulti = 0;
+let nombreSeriesHasard = 0;
+    
     
     
 function ouvrirCircuit() {
@@ -1370,6 +1387,9 @@ function retourAccueilDepuisFin() {
 }
 
 function ouvrirHasard() {
+
+  nombreSeriesHasard = 0;
+document.getElementById("seriesHasard").textContent = "";
   carteSpecialeHasardRetournee = false;
 imageCarteSpecialeHasardChoisie = "";
 carteHasardActive = false;
@@ -1612,6 +1632,12 @@ for (let i = 0; i < 6; i++) {
 
       carteHasardActive = true;
       carteHasardChoisie = cartesDisponiblesHasard[i];
+      nombreSeriesHasard =
+  Math.floor(Math.random() * 4) + 2;
+
+document.getElementById("seriesHasard").textContent =
+  "🔥 " + nombreSeriesHasard + " SÉRIES";
+      
       if (debutEntrainementHasard === 0) {
   debutEntrainementHasard = Date.now();
 }
@@ -1770,7 +1796,8 @@ function commencerExerciceHasard() {
 
     document.getElementById("grandeCarteHasard").src =
       carteHasardChoisie;
-
+document.getElementById("seriesHasardGrand").textContent =
+  "🔥 " + nombreSeriesHasard + " SÉRIES";
     document.getElementById("executionHasard").style.display = "block";
 
   }
@@ -1790,6 +1817,8 @@ function continuerApresSpeciale() {
   }
 
   if (origineCarteSpeciale === "hasard") {
+    document.getElementById("seriesHasardGrand").textContent =
+  "🔥 " + nombreSeriesHasard + " SÉRIES";
 
     document.getElementById("grandeCarteHasard").src =
       carteHasardChoisie;
