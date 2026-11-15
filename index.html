@@ -509,48 +509,79 @@ body {
   </button>
 
 </div>
-<!-- ÉCRAN FIN DE L'ENTRAÎNEMENT -->
-<div id="finEntrainement" style="display:none; text-align:center;">
+<!-- =====================================================
+     ÉCRAN FIN DE L'ENTRAÎNEMENT CIRCUIT
+===================================================== -->
 
-  <h1>🔥 ENTRAÎNEMENT TERMINÉ</h1>
+<div
+  id="finEntrainement"
+  style="display:none; text-align:center;"
+>
+
+  <h1>
+    🔥 ENTRAÎNEMENT TERMINÉ
+  </h1>
 
   <p id="bilanEntrainement"></p>
 
-  <p>Prométhée valide l’épreuve. 😄</p>
-<button
-  class="bouton-principal"
-  onclick="prometheeEnvoyerNexus()"
->
-  📊 ENREGISTRER DANS NEXUS MOVE
-</button>
-  <button onclick="retourAccueilDepuisFin()">
+  <p>
+    Prométhée valide l'épreuve. 😄
+  </p>
+
+  <button
+    class="bouton-principal"
+    type="button"
+    onclick="prometheeEnvoyerNexus()"
+  >
+    📊 ENREGISTRER DANS NEXUS MOVE
+  </button>
+
+  <button
+    class="bouton-retour"
+    type="button"
+    onclick="retourAccueilDepuisFin()"
+  >
     🏠 RETOUR À L'ACCUEIL
   </button>
 
 </div>
 
-<!-- ÉCRAN ENTRAÎNEMENT HASARD -->
-<div id="hasard" class="ecran-jeu" style="display:none;">
 
-  <h1>🎲 ENTRAÎNEMENT HASARD</h1>
+<!-- =====================================================
+     ÉCRAN ENTRAÎNEMENT HASARD
+===================================================== -->
 
-  <p id="titreHasard"></p>
-<p
-  id="seriesHasard"
-  style="
-    font-size:26px;
-    font-weight:bold;
-    min-height:34px;
-  "
-></p>
-  <div id="zoneCartesHasard"></div>
-<button
-  class="bouton-principal"
-  id="boutonCommencerExerciceHasard"
-  onclick="commencerExerciceHasard()"
+<div
+  id="hasard"
+  class="ecran-jeu"
   style="display:none;"
 >
-  🔥 COMMENCER L'EXERCICE
+
+  <h1>
+    🎲 ENTRAÎNEMENT HASARD
+  </h1>
+
+  <p id="titreHasard"></p>
+
+  <p
+    id="seriesHasard"
+    style="
+      font-size:26px;
+      font-weight:bold;
+      min-height:34px;
+    "
+  ></p>
+
+  <div id="zoneCartesHasard"></div>
+
+  <button
+    class="bouton-principal"
+    id="boutonCommencerExerciceHasard"
+    type="button"
+    onclick="commencerExerciceHasard()"
+    style="display:none;"
+  >
+    🔥 COMMENCER L'EXERCICE
 </button>
   <br>
 
