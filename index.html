@@ -1049,12 +1049,18 @@ function prometheePreparerSession(
     completedExercises:
       prometheeSoloExercices.length,
 
-    exercises:
+        exercises:
       prometheeSoloExercices.map(
         exercice => ({ ...exercice })
       )
 
   };
+
+  /* CONSERVER LA SÉANCE DANS PROMÉTHÉE */
+
+  prometheeMemoriserSession(
+    prometheeSoloSession
+  );
 
 }
 
