@@ -2764,7 +2764,309 @@ exercicesParJoueur[joueurActuel]++;
 
 }
 
- 
+ /* =========================================================
+   PROMÉTHÉE — HISTORIQUE SPORTIF LOCAL
+========================================================= */
+
+const PROMETHEE_HISTORY_KEY =
+  "prometheeSoloHistory";
+
+
+/* =========================================================
+   LIRE L'HISTORIQUE
+========================================================= */
+
+function prometheeLireHistorique() {
+
+  try {
+
+    const donnees = JSON.parse(
+      localStorage.getItem(
+        PROMETHEE_HISTORY_KEY
+      )
+    );
+
+    return Array.isArray(donnees)
+      ? donnees
+      : [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================================================
+   ENREGISTRER UNE SÉANCE
+========================================================= */
+
+function prometheeMemoriserSession(session) {
+
+  if (!session || !session.id) {
+    return;
+  }
+
+  const historique =
+    prometheeLireHistorique();
+
+  const existe = historique.some(
+    item => item.id === session.id
+  );
+
+  if (existe) {
+    return;
+  }
+
+  historique.unshift(session);
+
+  try {
+
+    localStorage.setItem(
+      PROMETHEE_HISTORY_KEY,
+      JSON.stringify(historique)
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Erreur sauvegarde Prométhée :",
+      error
+    );
+
+    alert(
+      "Impossible de conserver cette séance " +
+      "dans l'historique Prométhée."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   FORMAT DURÉE
+========================================================= */
+
+function prometheeFormatDuree(secondes) {
+
+  const total = Math.max(
+    0,
+    Math.floor(Number(secondes) || 0)
+  );
+
+  const minutes = Math.floor(total / 60);
+
+  const secondesRestantes = total % 60;
+
+  return (
+    minutes +
+    " min " +
+    secondesRestantes +
+    " s"
+  );
+
+}
+
+
+/* =========================================================
+   AFFICHER L'HISTORIQUE
+========================================================= */
+
+function prometheeAfficherHistorique() {
+
+  const liste =
+    document.getElementById(
+      "listeHistoriquePromethee"
+    );
+
+  if (!liste) {
+    return;
+  }
+
+  liste.innerHTML = "";
+
+  const historique =
+    prometheeLireHistorique();
+
+  if (historique.length === 0) {
+
+    const vide =
+      document.createElement("p");
+
+    vide.textContent =
+      "Aucune séance enregistrée " +
+      "dans l'historique local de Prométhée.";
+
+    liste.appendChild(vide);
+
+    return;
+  }
+
+  historique.forEach(session => {
+
+    const carte =
+      document.createElement("div");
+
+    carte.style.cssText = `
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:18px;
+      padding:18px;
+      margin-bottom:15px;
+    `;
+
+
+    const titre =
+      document.createElement("h3");
+
+    titre.textContent =
+      "🔥 Solo — " +
+      (session.mode || "Entraînement");
+
+    titre.style.marginTop = "0";
+
+    carte.appendChild(titre);
+
+
+    const date =
+      document.createElement("p");
+
+    const valeurDate =
+      new Date(session.date);
+
+    date.textContent =
+      Number.isNaN(valeurDate.getTime())
+        ? "Date inconnue"
+        : valeurDate.toLocaleString("fr-FR");
+
+    carte.appendChild(date);
+
+
+    const famille =
+      document.createElement("p");
+
+    famille.textContent =
+      "Famille : " +
+      (session.family || "Toutes");
+
+    carte.appendChild(famille);
+
+
+    const exercices =
+      Array.isArray(session.exercises)
+        ? session.exercises
+        : [];
+
+
+    exercices.forEach(exercice => {
+
+      const ligne =
+        document.createElement("div");
+
+      ligne.style.cssText = `
+        padding:7px 0;
+        border-bottom:1px solid
+          rgba(255,255,255,0.08);
+      `;
+
+      const series =
+        Number(exercice.series) || 1;
+
+      ligne.textContent =
+        exercice.name +
+        " — " +
+        series +
+        (
+          series > 1
+            ? " séries"
+            : " série"
+        );
+
+      carte.appendChild(ligne);
+
+    });
+
+
+    const bilan =
+      document.createElement("p");
+
+    bilan.style.cssText = `
+      margin-top:15px;
+      font-weight:bold;
+      color:#22dce8;
+    `;
+
+    bilan.textContent =
+      exercices.length +
+      " exercices • " +
+      prometheeFormatDuree(
+        session.duration
+      );
+
+    carte.appendChild(bilan);
+
+
+    liste.appendChild(carte);
+
+  });
+
+}
+
+
+/* =========================================================
+   OUVRIR L'HISTORIQUE
+========================================================= */
+
+function ouvrirHistoriquePromethee() {
+
+  document.getElementById(
+    "accueil"
+  ).style.display = "none";
+
+  document.getElementById(
+    "historiquePromethee"
+  ).style.display = "block";
+
+  prometheeAfficherHistorique();
+
+  window.scrollTo(0, 0);
+
+}
+
+
+/* =========================================================
+   FERMER L'HISTORIQUE
+========================================================= */
+
+function fermerHistoriquePromethee() {
+
+  document.getElementById(
+    "historiquePromethee"
+  ).style.display = "none";
+
+  document.getElementById(
+    "accueil"
+  ).style.display = "block";
+
+  window.scrollTo(0, 0);
+
+}
+
+
+/* =========================================================
+   ACCÉDER AUX ANCIENS TRANSFERTS NEXUS
+========================================================= */
+
+function ouvrirAncienHistoriqueNexus() {
+
+  window.location.assign(
+    NEXUS_MOVE_URL
+  );
+
+}
     
     
   </script>
