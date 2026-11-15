@@ -1467,6 +1467,19 @@ function afficherExerciceCircuit() {
 
 function exerciceSuivantCircuit() {
 
+  /* ENREGISTRER LA CARTE TERMINÉE */
+
+  prometheeAjouterExercice(
+
+    cartesCircuitSelectionnees[
+      exerciceCircuitActuel
+    ],
+
+    nombreSeriesCircuit
+
+  );
+
+  
   if (
     exerciceCircuitActuel <
     cartesCircuitSelectionnees.length - 1
@@ -1532,6 +1545,14 @@ function terminerEntrainementCircuit() {
 
   document.getElementById("finCircuit").style.display = "none";
   document.getElementById("finEntrainement").style.display = "block";
+
+  /* PRÉPARER LE TRANSFERT NEXUS MOVE */
+
+  prometheePreparerSession(
+    "Circuit",
+    totalTempsSecondes,
+    totalCircuits
+  );
 
 }function nouveauCircuit() {
 
@@ -1896,6 +1917,12 @@ function retourChoixDepuisHasard() {
 }
 
   function exerciceTermineHasard() {
+      /* ENREGISTRER LA CARTE TERMINÉE */
+
+  prometheeAjouterExercice(
+    carteHasardChoisie,
+    nombreSeriesHasard
+  );
 
   totalExercicesHasard++;
 
@@ -1938,6 +1965,15 @@ function terminerEntrainementHasard() {
 
   document.getElementById("hasard").style.display = "none";
   document.getElementById("finHasard").style.display = "block";
+
+  /* PRÉPARER LE TRANSFERT NEXUS MOVE */
+
+  prometheePreparerSession(
+    "Hasard",
+    dureeTotaleHasard,
+    1
+  );
+  
 }
 
 
