@@ -820,6 +820,168 @@ body {
   
   <script>
 
+/* =========================================================
+   PROMÉTHÉE — CONNEXION NEXUS MOVE
+========================================================= */
+
+/*
+  REMPLACER CETTE ADRESSE PAR
+  L'ADRESSE EXACTE DE NEXUS MOVE
+*/
+
+const NEXUS_MOVE_URL =
+  "https://TON-ADRESSE-NEXUS-MOVE/index.html";
+
+
+/* EXERCICES SOLO TERMINÉS */
+
+let prometheeSoloExercices = [];
+
+
+/* DERNIÈRE SÉANCE À TRANSMETTRE */
+
+let prometheeSoloSession = null;
+
+
+/* IDENTIFIER UNE CARTE */
+
+function prometheeNomCarte(chemin) {
+
+  if (!chemin) {
+    return "Carte inconnue";
+  }
+
+  return chemin
+    .split("/")
+    .pop()
+    .replace(/\.(png|jpg|jpeg)$/i, "")
+    .replace(/-/g, " ");
+}
+
+
+/* ENREGISTRER UN EXERCICE */
+
+function prometheeAjouterExercice(
+  carte,
+  series
+) {
+
+  prometheeSoloExercices.push({
+
+    name: prometheeNomCarte(carte),
+
+    card: carte,
+
+    series: Number(series) || 1
+
+  });
+
+}
+
+
+/* PRÉPARER UNE SÉANCE SOLO */
+
+function prometheePreparerSession(
+  mode,
+  duree,
+  circuits
+) {
+
+  if (
+    prometheeSoloExercices.length === 0
+  ) {
+
+    prometheeSoloSession = null;
+    return;
+
+  }
+
+  prometheeSoloSession = {
+
+    id:
+      "promethee-" +
+      Date.now() +
+      "-" +
+      Math.random().toString(36).slice(2),
+
+    type: "promethee-solo",
+
+    date: new Date().toISOString(),
+
+    source: "promethee",
+
+    mode: mode,
+
+    family: familleChoisie,
+
+    name:
+      "Prométhée Solo — " + mode,
+
+    duration: Math.max(
+      1,
+      Number(duree) || 1
+    ),
+
+    rounds: Number(circuits) || 1,
+
+    completedExercises:
+      prometheeSoloExercices.length,
+
+    exercises:
+      prometheeSoloExercices.map(
+        exercice => ({ ...exercice })
+      )
+
+  };
+
+}
+
+
+/* ENVOYER VERS NEXUS MOVE */
+
+function prometheeEnvoyerNexus() {
+
+  if (!prometheeSoloSession) {
+
+    alert(
+      "Aucune séance Solo terminée à envoyer."
+    );
+
+    return;
+  }
+
+  if (
+    NEXUS_MOVE_URL.includes(
+      "TON-ADRESSE-NEXUS-MOVE"
+    )
+  ) {
+
+    alert(
+      "Il faut d'abord configurer l'adresse de Nexus Move."
+    );
+
+    return;
+  }
+
+  const donnees =
+    encodeURIComponent(
+      JSON.stringify(
+        prometheeSoloSession
+      )
+    );
+
+  const destination =
+    NEXUS_MOVE_URL.split("#")[0] +
+    "#promethee=" +
+    donnees;
+
+  window.location.assign(destination);
+
+}
+
+
+
+    
     function ouvrirSolo() {
       document.getElementById("accueil").style.display = "none";
       document.getElementById("solo").style.display = "block";
