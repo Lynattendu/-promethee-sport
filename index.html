@@ -3022,17 +3022,54 @@ function prometheeAfficherHistorique() {
 
 function ouvrirHistoriquePromethee() {
 
-  document.getElementById(
-    "accueil"
-  ).style.display = "none";
+  const accueil =
+    document.getElementById("accueil");
 
-  document.getElementById(
-    "historiquePromethee"
-  ).style.display = "block";
+  const historique =
+    document.getElementById("historiquePromethee");
 
-  prometheeAfficherHistorique();
+  if (!historique) {
 
-  window.scrollTo(0, 0);
+    alert(
+      "ERREUR : l'écran historiquePromethee est introuvable dans le HTML."
+    );
+
+    return;
+  }
+
+  if (
+    typeof prometheeAfficherHistorique !== "function"
+  ) {
+
+    alert(
+      "ERREUR : la fonction d'affichage de l'historique est introuvable."
+    );
+
+    return;
+  }
+
+  try {
+
+    prometheeAfficherHistorique();
+
+    if (accueil) {
+      accueil.style.display = "none";
+    }
+
+    historique.style.display = "block";
+
+    window.scrollTo(0, 0);
+
+  } catch (error) {
+
+    alert(
+      "ERREUR HISTORIQUE : " +
+      error.message
+    );
+
+    console.error(error);
+
+  }
 
 }
 
