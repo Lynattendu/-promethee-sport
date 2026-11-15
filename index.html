@@ -606,15 +606,31 @@ body {
 </div>
 
 <!-- ÉCRAN FIN ENTRAÎNEMENT HASARD -->
-<div id="finHasard" style="display:none; text-align:center;">
+
+<div
+  id="finHasard"
+  style="display:none; text-align:center;"
+>
 
   <h1>🔥 ENTRAÎNEMENT TERMINÉ</h1>
 
   <p id="bilanHasard"></p>
 
-  <p>Prométhée valide l’épreuve. 😄</p>
+  <p>Prométhée valide l'épreuve. 😄</p>
 
-  <button onclick="retourAccueilDepuisHasard()">
+  <button
+    class="bouton-principal"
+    type="button"
+    onclick="prometheeEnvoyerNexus()"
+  >
+    📊 ENREGISTRER DANS NEXUS MOVE
+  </button>
+
+  <button
+    class="bouton-retour"
+    type="button"
+    onclick="retourAccueilDepuisHasard()"
+  >
     🏠 RETOUR À L'ACCUEIL
   </button>
 
