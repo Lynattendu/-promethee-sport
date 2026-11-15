@@ -2714,7 +2714,50 @@ exercicesParJoueur[joueurActuel]++;
 
 }
 
-    
+  <!-- =====================================================
+     PROMÉTHÉE — HISTORIQUE SPORTIF
+===================================================== -->
+
+<div
+  id="historiquePromethee"
+  class="ecran-jeu"
+  style="display:none;"
+>
+
+  <h1>
+    📊 MON HISTORIQUE SPORTIF
+  </h1>
+
+  <p>
+    Mes entraînements Solo
+  </p>
+
+  <div
+    id="listeHistoriquePromethee"
+    style="
+      max-width:500px;
+      margin:20px auto;
+      text-align:left;
+    "
+  ></div>
+
+  <button
+    class="bouton-mode"
+    type="button"
+    onclick="ouvrirAncienHistoriqueNexus()"
+  >
+    📂 VOIR LES SÉANCES DÉJÀ ENVOYÉES
+  </button>
+
+  <button
+    class="bouton-retour"
+    type="button"
+    onclick="fermerHistoriquePromethee()"
+  >
+    ← RETOUR À L'ACCUEIL
+  </button>
+
+</div>  
     
     
     
